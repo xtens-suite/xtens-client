@@ -4,7 +4,7 @@
             <h1>Account Login: </h1>
         </div>
         <div id='formCnt'>
-            <b-form @submit="onSubmit">
+            <b-form ref="loginForm" @submit="onSubmit">
                 <b-form-group id="loginGroup" label="Login:" label-for="login"
                     description="We'll protect the privacy of your login">
                     <b-form-input id="login" type="text" v-model="form.login" required
@@ -32,7 +32,8 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
+import { mapGetters } from 'vuex';
 
 export default {
 
@@ -41,28 +42,35 @@ export default {
             form: {
                 login: '',
                 password: ''
-            },
+            } /*,
             loginFailed: false,
-            serverErrorOnLogin: false
+            serverErrorOnLogin: false */
         };
+    },
+
+    computed: {
+        ...mapGetters({
+            error: 'account/error'
+        }),
+        loginFailed() {
+            const error = this.$store.getters['account/error'];
+            return error && error.status === 401;
+        },
+        serverErrorOnLogin() {
+            const error = this.$store.getters['account/error'];
+            return error && error.status !== 401;
+        }
     },
 
     methods: {
 
-        async onSubmit(ev) {
+        onSubmit(ev) {
             ev.preventDefault();
             const { form } = this;
-            try {
-                const res = await axios.post('/api/login', {
-                    identifier: form.login,
-                    password: form.password
-                });
-                this.onSuccess(res.data);
-            } catch (err) {
-                this.onError(err);
-            }
-        },
+            this.$store.dispatch('account/authenticate', form);
+        }
 
+        /*
         onSuccess(payload) {
             this.loginFailed = false;
             this.serverErrorOnLogin = false;
@@ -76,7 +84,7 @@ export default {
             } else {
                 this.serverErrorOnLogin = true;
             }
-        }
+        } */
     }
 };
 </script>
