@@ -1,7 +1,23 @@
 <template>
     <div id="main">
         <h1>Subject List</h1>
-        <b-table striped hover :items="records" />
+        <b-table striped hover paginate :items="records" :fields="fields" >
+            <template slot="links" slot-scope="data">
+                <div>
+                    <a href="">Edit</a>
+                    <a href="">New Derivative Sample</a>
+                    <a href="">New Derivative Data</a>
+                </div>
+            </template>
+        </b-table>
+        <pagination record-type="subject" :projects="projects"
+            :active-project="activeProject" :current-page="paginationInfo.currentPage"
+            :total-items="paginationInfo.totalItems" :total-pages="paginationInfo.totalPages"
+            :items-per-page="paginationInfo.pageSize" :links="paginationInfo.links" />
+        <!--
+        <b-pagination size="md" :total-rows="paginationInfo.totalCount" v-model="paginationInfo.currentPage"
+            :per-page="paginationInfo.pageSize" />
+        -->
     </div>
 </template>
 <script>
@@ -10,13 +26,57 @@ import { find } from 'lodash';
 
 import { ALL_PROJETCS } from '@/utils/constants';
 
+import Pagination from '@/components/subcomponents/Pagination';
+
 export default {
+
+    components: {
+        pagination: Pagination
+    },
+
+    data() {
+        return {
+            fields: [
+                {
+                    key: 'code',
+                    label: 'Code',
+                    sortable: true
+                },
+                {
+                    key: 'given_name',
+                    label: 'Name',
+                    sortable: true
+                },
+                {
+                    key: 'surname',
+                    label: 'Surname',
+                    sortable: true
+                },
+                {
+                    key: 'birth_date',
+                    label: 'Birth Date',
+                    sortable: true
+                },
+                {
+                    key: 'sex',
+                    label: 'Sex',
+                    sortable: true
+                },
+                // virtual column for links
+                {
+                    key: 'links',
+                    label: 'Links'
+                }
+            ]
+        };
+    },
 
     computed: {
         ...mapGetters({
             projects: 'account/projects',
             activeProject: 'account/activeProject',
-            records: 'records/subjects'
+            records: 'records/subjects',
+            paginationInfo: 'records/paginationInfo'
         })
     },
 
@@ -25,7 +85,7 @@ export default {
     mounted() {
         const { projects } = this;
         const activeProject = this.activeProject !== ALL_PROJETCS ? find(projects, { name: this.activeProject }) : undefined;
-        this.$store.dispatch('records/getSubjects', activeProject);
+        this.$store.dispatch('records/getSubjects', { activeProject });
     }
 };
 </script>

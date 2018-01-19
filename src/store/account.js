@@ -123,6 +123,7 @@ const mutations = {
     },
 
     [GET_PROJECTS_SUCCESS](state, projects) {
+        state.isPending = false;
         state.projects = projects;
     },
 

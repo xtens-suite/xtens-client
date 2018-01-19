@@ -1,0 +1,60 @@
+{
+    "groups": [
+      {
+        "projects": [
+          {
+            "name": "None",
+            "description": "None",
+            "id": 1,
+            "createdAt": "2015-06-18T12:53:08.000Z",
+            "updatedAt": "2017-05-30T07:51:05.000Z"
+          },
+          {
+            "name": "Heart",
+            "description": "Heart",
+            "id": 2,
+            "createdAt": "2015-06-18T12:53:15.000Z",
+            "updatedAt": "2017-05-30T07:51:24.000Z"
+          },
+          {
+            "name": "Liver",
+            "description": "Liver",
+            "id": 3,
+            "createdAt": "2015-06-18T12:54:02.000Z",
+            "updatedAt": "2017-05-30T07:51:30.000Z"
+          },
+          {
+            "name": "Fat",
+            "description": "Fat",
+            "id": 4,
+            "createdAt": "2015-06-18T12:54:06.000Z",
+            "updatedAt": "2017-05-30T07:51:41.000Z"
+          },
+          {
+            "name": "Neuroblastoma",
+            "description": "Neuroblastoma",
+            "id": 5,
+            "createdAt": "2015-06-18T12:54:10.000Z",
+            "updatedAt": "2015-06-18T12:54:10.000Z"
+          }
+        ],
+        "name": "SuperAdmin",
+        "id": 1,
+        "privilegeLevel": "wheel",
+        "canAccessPersonalData": true,
+        "canAccessSensitiveData": true,
+        "createdAt": "2015-10-22T09:01:28.000Z",
+        "updatedAt": "2017-01-09T15:16:11.000Z"
+      }
+    ],
+    "addressInformation": 1,
+    "sex": "N.A.",
+    "email": "superuser@gmail.com",
+    "login": "admin",
+    "id": 7,
+    "firstName": "default administrator",
+    "lastName": "sysadmin",
+    "birthDate": "1970-01-01T00:00:00.000Z",
+    "createdAt": "2015-06-18T10:13:11.000Z",
+    "updatedAt": "2015-06-18T10:13:11.000Z"
+  }
