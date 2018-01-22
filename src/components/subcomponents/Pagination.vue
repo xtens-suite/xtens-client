@@ -56,6 +56,7 @@ export default {
 
     methods: {
         onPageChange(pageIndex) {
+            if (pageIndex < 0 || pageIndex >= this.totalPages) return;
             const { projects, itemsPerPage } = this;
             const activeProject = this.activeProject !== ALL_PROJETCS ? find(projects, { name: this.activeProject }) : undefined;
             this.$store.dispatch(recordType2ActionMap[this.recordType], {
