@@ -211,7 +211,7 @@ describe('account', function() {
 
     describe('mutations', function() {
 
-        describe('LOGIN_REQUEST()', function() {
+        describe('LOGIN_REQUEST', function() {
 
             it('sets the isPending property of the state to true', function() {
                 const state = {};
@@ -221,7 +221,7 @@ describe('account', function() {
 
         });
 
-        describe('LOGIN_SUCCESS()', function() {
+        describe('LOGIN_SUCCESS', function() {
 
             it('sets the user and token property of the state', function() {
                 const state = {};
@@ -245,7 +245,7 @@ describe('account', function() {
 
         });
 
-        describe('GET_PROJECTS_SUCCESS()', function() {
+        describe('GET_PROJECTS_SUCCESS', function() {
 
             it('writes into the state the projects object and sets isPending to false', function() {
                 const state = {
@@ -262,7 +262,7 @@ describe('account', function() {
 
         });
 
-        describe('LOGIN_ERROR()', function() {
+        describe('LOGIN_ERROR', function() {
 
             it('writes the error object and sets isPending to false', function() {
                 const state = {
