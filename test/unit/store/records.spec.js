@@ -28,7 +28,7 @@ const resHeaders = {
     'x-page-size': '30',
     'x-total-count': '1604',
     'x-total-pages': '54',
-    links: '<http://localhost:1337/subject?limit=30&skip=30>; rel=next, <http://localhost:1337/subject?limit=30&skip=1590>; rel=last'
+    link: '<http://localhost:1337/subject?limit=30&skip=30>; rel=next, <http://localhost:1337/subject?limit=30&skip=1590>; rel=last'
 };
 
 describe('records', function() {
@@ -110,7 +110,7 @@ describe('records', function() {
             it('commits a REMOTE_ERROR event if an error is throw by recordsApi.getSubjects()', function(done) {
                 records.actions.getSubjects({commit, state}, malformedPayload)
                 .then(() => {
-                    expect(commit.calledWithExactly(REMOTE_ERROR)).to.be.true;
+                    expect(commit.calledWith(REMOTE_ERROR)).to.be.true;
                     done();
                 }).catch(err => {
                     done(err);
@@ -156,8 +156,9 @@ describe('records', function() {
                 expect(testState.paginationInfo).to.have.property('pageSize', Number.parseInt(resHeaders['x-page-size']));
                 expect(testState.paginationInfo).to.have.property('totalItems', Number.parseInt(resHeaders['x-total-count']));
                 expect(testState.paginationInfo).to.have.property('totalPages', Number.parseInt(resHeaders['x-total-pages']));
-                expect(testState.paginationInfo).to.have.deep.property('links.next', 'http://localhost:1337/subject?limit=30&skip=30');
-                expect(testState.paginationInfo).to.have.deep.property('links.last', 'http://localhost:1337/subject?limit=30&skip=1590');
+                console.log(testState.paginationInfo);
+                expect(testState.paginationInfo).to.have.nested.property('links.next', 'http://localhost:1337/subject?limit=30&skip=30');
+                expect(testState.paginationInfo).to.have.nested.property('links.last', 'http://localhost:1337/subject?limit=30&skip=1590');
 
             });
 
