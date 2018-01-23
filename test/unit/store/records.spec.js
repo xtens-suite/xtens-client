@@ -1,9 +1,13 @@
 import { expect } from 'chai';
 
+import { cloneDeep } from 'lodash';
+
 import { REMOTE_REQUEST, SUBJECTS_SUCCESS, REMOTE_ERROR } from '@/store/mutation-types';
 
 import records from '@/store/records';
 import subjects from '../fixtures/subjects/subjectList';
+
+import * as recordsApi from '@/api/records-api';
 
 const testState = {
     isPending: false,
@@ -33,6 +37,65 @@ describe('records', function() {
             it('gets the \'paginationInfo\' property of the state', function() {
                 expect(records.getters.paginationInfo(testState)).to.eql(testState.paginationInfo);
             });
+        });
+
+    });
+
+    describe('actions', function() {
+
+        let commit, getSubjStub, resHeaders, payload, state;
+
+        describe('getSubject', function() {
+
+            beforeEach(function() {
+                commit = sinon.stub();
+                resHeaders = 'whatever';
+                getSubjStub = sinon.stub(recordsApi, 'getSubjects').returns({
+                    data: subjects,
+                    headers: resHeaders
+                });
+                payload = {};
+                state = cloneDeep(testState);
+            });
+
+            afterEach(function() {
+                getSubjStub.restore();
+            });
+
+            it('commits a REMOTE_REQUEST event', function(done) {
+                records.actions.getSubjects({commit, state}, payload)
+                .then(() => {
+                    expect(commit.calledWithExactly(REMOTE_REQUEST)).to.be.true;
+                    done();
+                }).catch(err => {
+                    done(err);
+                });
+            });
+
+            it('commits a SUBJECTS_SUCCESS event with headers and subjects as properties of the second argument', function(done) {
+                records.actions.getSubjects({commit, state}, payload)
+                .then(() => {
+                    const arg1 = {
+                        subjects,
+                        headers: resHeaders
+                    };
+                    expect(commit.calledWithExactly(SUBJECTS_SUCCESS, arg1)).to.be.true;
+                    done();
+                }).catch(err => {
+                    done(err);
+                });
+            });
+
+            it('triggers a call of the api.getSubjects() method with correct \'payload\' argument', function(done) {
+                records.actions.getSubjects({commit, state}, payload)
+                .then(() => {
+                    expect(getSubjStub.calledWithExactly(payload)).to.be.true;
+                    done();
+                }).catch(err => {
+                    done(err);
+                });
+            });
+
         });
 
     });
