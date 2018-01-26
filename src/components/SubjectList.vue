@@ -43,7 +43,7 @@ export default {
                     sortable: true
                 },
                 {
-                    key: 'given_name',
+                    key: 'givenName',
                     label: 'Name',
                     sortable: true
                 },
@@ -53,7 +53,7 @@ export default {
                     sortable: true
                 },
                 {
-                    key: 'birth_date',
+                    key: 'birthDate',
                     label: 'Birth Date',
                     sortable: true
                 },
