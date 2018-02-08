@@ -172,7 +172,7 @@ describe('records', function() {
                 };
                 records.mutations[REMOTE_ERROR](testState, errorResponse);
                 expect(testState.error).to.eql(errorResponse);
-            });
+            }); 
 
         });
 

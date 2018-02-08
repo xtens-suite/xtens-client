@@ -45,6 +45,7 @@ const state = {
 };
 
 const getters = {
+    user: state => state.user,
     isAuthenticated: state => state.user !== null,
     hasToken: state => state.token !== null,
     error: state => state.error,
@@ -101,6 +102,10 @@ const actions = {
             const { response } = err;
             commit(LOGIN_ERROR, response);
         }
+    },
+
+    storeUserInfo({commit, state}, userInfo) {
+        commit(LOGIN_SUCCESS, userInfo);
     }
 
 };

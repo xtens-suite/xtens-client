@@ -32,6 +32,16 @@ describe('account', function() {
 
     describe('getters', function() {
 
+        describe('user', function() {
+
+            it('returns the user object', function() {
+                const state = {
+                    user: superUser
+                };
+                expect(account.getters.user(state)).to.eql(superUser);
+            });
+        });
+
         describe('isAuthenticated', function() {
 
             it('returns true if user is not null', function() {
@@ -358,6 +368,28 @@ describe('account', function() {
                 });
             });
 
+        });
+
+        describe('storeUserInfo()', function() {
+
+            let commit, state, userInfo;
+
+            beforeEach(function() {
+                commit = sinon.stub();
+                userInfo = {
+                    user: {},
+                    token: 'bäø'
+                };
+                state = {};
+            });
+
+            it('commits a LOGIN_SUCCESS mutation', function() {
+                account.actions.storeUserInfo({
+                    commit,
+                    state
+                }, userInfo);
+                expect(commit.calledWithExactly(LOGIN_SUCCESS, userInfo)).to.be.true;
+            });
         });
 
     });
