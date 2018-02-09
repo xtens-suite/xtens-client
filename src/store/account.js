@@ -45,7 +45,12 @@ const state = {
 };
 
 const getters = {
-    user: state => state.user,
+    userInfo: state => {
+        return {
+            user: state.user,
+            token: state.token
+        };
+    },
     isAuthenticated: state => state.user !== null,
     hasToken: state => state.token !== null,
     error: state => state.error,

@@ -21,37 +21,44 @@ export default {
 
     computed: {
         ...mapGetters({
-            'user': 'account/user',
-            'token': 'account/token'
+            'userInfo': 'account/userInfo'
         })
     },
 
     created() {
+
         let userInfo;
 
-        if (!window.sessionStorage) return;
+        if (!sessionStorage) return;
 
         // retrieve user session info from sessionStorage on page reload (if available)
-        if (window.sessionStorage.getItem(USER_INFO)) {
-            try {
-                userInfo = JSON.parse(window.sessionStorage.getItem(USER_INFO));
-            } catch (err) {
-                console.log(`Error caught: ${err.message}`);
-            }
-        }
-        window.sessionStorage.removeItem(USER_INFO);
+        if (!sessionStorage.getItem(USER_INFO)) return;
 
-        // TODO: add some validation step to the userInfo object
-        this.$store.dispatch('account/storeUserInfo', userInfo);
+        try {
+            userInfo = JSON.parse(window.sessionStorage.getItem(USER_INFO));
+            sessionStorage.removeItem(USER_INFO);
+
+            // TODO: add some validation step to the userInfo object
+            this.$store.dispatch('account/storeUserInfo', userInfo);
+        } catch (err) {
+            console.log(`Error caught: ${err.message}`);
+        }
+        window.addEventListener('beforeunload', this.leaving);
+        console.log('App.created() - done!');
     },
 
-    beforeDestroy() {
-        const userInfo = JSON.stringify({
-            user: this.user,
-            token: this.token
-        });
-        console.log(`User Info is: ${userInfo}`);
-        window.sessionStorage.setItem(USER_INFO, userInfo);
+    destroyed() {
+        window.removeListener('beforeunload', this.leaving);
+    },
+
+    methods: {
+
+        leaving() {
+            const userInfo = JSON.stringify(this.userInfo);
+            console.log(`User Info is: ${userInfo}`);
+            sessionStorage.setItem(USER_INFO, userInfo);
+        }
+
     }
 
 };

@@ -32,13 +32,14 @@ describe('account', function() {
 
     describe('getters', function() {
 
-        describe('user', function() {
+        describe('userInfo', function() {
 
-            it('returns the user object', function() {
+            it('returns the user and token as properties object', function() {
                 const state = {
-                    user: superUser
+                    user: superUser,
+                    token: 'b4$qa0'
                 };
-                expect(account.getters.user(state)).to.eql(superUser);
+                expect(account.getters.userInfo(state)).to.eql(state);
             });
         });
 
