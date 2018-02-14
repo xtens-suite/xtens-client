@@ -7,7 +7,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import AppNavbar from '@/components/AppNavbar.vue';
+import AppNavbar from '@/components/subcomponents/AppNavbar.vue';
 
 const USER_INFO = 'userInfo';
 
@@ -27,28 +27,29 @@ export default {
 
     created() {
 
-        let userInfo;
+        window.addEventListener('beforeunload', this.leaving);
 
-        if (!sessionStorage) return;
-
-        // retrieve user session info from sessionStorage on page reload (if available)
-        if (!sessionStorage.getItem(USER_INFO)) return;
+        if (!sessionStorage || !sessionStorage.getItem(USER_INFO)) {
+            this.$router.push('login');
+            return;
+        }
 
         try {
-            userInfo = JSON.parse(window.sessionStorage.getItem(USER_INFO));
+            const userInfo = JSON.parse(window.sessionStorage.getItem(USER_INFO));
             sessionStorage.removeItem(USER_INFO);
 
             // TODO: add some validation step to the userInfo object
             this.$store.dispatch('account/storeUserInfo', userInfo);
         } catch (err) {
             console.log(`Error caught: ${err.message}`);
+            this.$router.push('login');
         }
-        window.addEventListener('beforeunload', this.leaving);
+
         console.log('App.created() - done!');
     },
 
     destroyed() {
-        window.removeListener('beforeunload', this.leaving);
+        window.removeEventListener('beforeunload', this.leaving);
     },
 
     methods: {
