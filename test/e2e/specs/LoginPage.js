@@ -9,7 +9,8 @@ module.exports = {
         browser.expect.element('#password').to.be.present;
         browser.setValue('#login', 'admin');
         browser.setValue('#password', 'admin1982');
-        browser.submitForm();
+        browser.submitForm('form');
+        browser.waitForElementNotPresent('#login', 5000).waitForElementVisible('#main', 10000);
         browser.end();
 
     }
