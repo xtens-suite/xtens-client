@@ -9,19 +9,62 @@
             <!-- Right aligned nav items -->
             <b-navbar-nav class="ml-auto">
 
-                <b-nav-item-dropdown right>
+                <b-button>{{ activeProject }}</b-button>
+
+                <b-nav-item-dropdown id="navbarUserProfileDropdown" right v-if="isAuthenticated">
                     <template slot="button-content">
-                        <em>User</em>
+                        <em id="navbarUsername">{{ login }}</em>
                     </template>
-                    <b-dropdown-item href="#">Profile</b-dropdown-item>
-                    <b-dropdown-item href="#">Signout</b-dropdown-item>
+                    <b-dropdown-item id="navbarProfile" href="#">Profile</b-dropdown-item>
+                    <b-dropdown-item id="navbarSignOut" @click.prevent="signOut" href="#">Signout</b-dropdown-item>
                 </b-nav-item-dropdown>
             </b-navbar-nav>
         </b-collapse>
     </b-navbar>
 </template>
 <script>
-export default {};
+export default {
+
+    /*
+    data() {
+        return {
+            selectedProject: null
+        };
+    }, */
+
+    props: {
+        login: String,
+        userId: Number,
+        isAuthenticated: Boolean,
+        projects: Array,
+        activeProject: String
+    },
+
+    /*
+    computed: {
+        projOpts() {
+            const opts = this.projects.map(proj => {
+                return {
+                    value: proj.id,
+                    text: proj.name
+                };
+            });
+            opts.push({
+                value: null,
+                text: 'All Projects'
+            });
+            return opts;
+        }
+    }, */
+
+    methods: {
+        signOut() {
+            this.$store.dispatch('account/signOut');
+            this.$router.push('login');
+        }
+    }
+
+};
 </script>
 <style scoped lang="scss">
 $logo-border-radius: 4px;

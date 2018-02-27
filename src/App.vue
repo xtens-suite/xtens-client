@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <app-navbar />
+    <app-navbar :login="login" :user-id="userId" :is-authenticated="isAuthenticated"
+        :projects="projects" :active-project="activeProject"
+    />
     <router-view />
   </div>
 </template>
@@ -21,8 +23,21 @@ export default {
 
     computed: {
         ...mapGetters({
-            'userInfo': 'account/userInfo'
-        })
+            'userInfo': 'account/userInfo',
+            'isAuthenticated': 'account/isAuthenticated',
+            'projects': 'account/projects',
+            'activeProject': 'account/activeProject'
+        }),
+
+        login() {
+            const { userInfo: { user: { login } = {} } = {} } = this;
+            return login || 'Please login';
+        },
+
+        userId() {
+            const { userInfo: { user: { id } = {} } = {} } = this;
+            return id;
+        }
     },
 
     created() {

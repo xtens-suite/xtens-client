@@ -1,0 +1,58 @@
+[
+    {
+        "name": "Neuroblastoma",
+        "description": "Neuroblastoma",
+        "id": 5,
+        "createdAt": "2015-06-18T12:54:10.000Z",
+        "updatedAt": "2015-06-18T12:54:10.000Z"
+    },
+    {
+        "name": "None",
+        "description": "None",
+        "id": 1,
+        "createdAt": "2015-06-18T12:53:08.000Z",
+        "updatedAt": "2017-05-30T07:51:05.000Z"
+    },
+    {
+        "name": "Heart",
+        "description": "Heart",
+        "id": 2,
+        "createdAt": "2015-06-18T12:53:15.000Z",
+        "updatedAt": "2017-05-30T07:51:24.000Z"
+    },
+    {
+        "name": "Liver",
+        "description": "Liver",
+        "id": 3,
+        "createdAt": "2015-06-18T12:54:02.000Z",
+        "updatedAt": "2017-05-30T07:51:30.000Z"
+    },
+    {
+        "name": "Fat",
+        "description": "Fat",
+        "id": 4,
+        "createdAt": "2015-06-18T12:54:06.000Z",
+        "updatedAt": "2017-05-30T07:51:41.000Z"
+    },
+    {
+        "name": "Glycogenosis",
+        "description": "Glycogenosis",
+        "id": 6,
+        "createdAt": "2015-06-18T12:54:13.000Z",
+        "updatedAt": "2017-10-10T09:15:46.000Z"
+    },
+    {
+        "name": "Exomes - Lab 2",
+        "description": "Exomes - Lab 2",
+        "id": 9,
+        "createdAt": "2017-10-30T13:45:53.000Z",
+        "updatedAt": "2017-10-30T14:06:01.000Z"
+    },
+    {
+        "name": "Exomes - Lab 1",
+        "description": "Exomes - Lab 1",
+        "id": 8,
+        "createdAt": "2017-10-30T09:19:02.000Z",
+        "updatedAt": "2017-10-31T11:07:25.000Z"
+    }
+]

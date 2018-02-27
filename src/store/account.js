@@ -1,8 +1,10 @@
 import { isEmpty, uniq, flatten } from 'lodash';
 import axios from 'axios';
 
-import { WHEEL, ADMIN, STANDARD, ALL_PROJETCS } from '@/utils/constants';
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR, GET_PROJECTS_SUCCESS } from '@/store/mutation-types';
+import { WHEEL, ADMIN, STANDARD, ALL_PROJECTS } from '@/utils/constants';
+import {
+    LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR, RESET, GET_PROJECTS_SUCCESS, CHANGE_ACTIVE_PROJECT
+} from '@/store/mutation-types';
 import { logIn } from '@/api/auth-api';
 import { getProjects } from '@/api/project-api';
 import router from '@/router';
@@ -27,7 +29,7 @@ function computePrivilege2ProjectMap(user) {
     return privilege2ProjectMap;
 }
 
-const state = {
+export const initialState = {
     isPending: false,
     user: null,
     token: null,
@@ -40,14 +42,14 @@ const state = {
     canAccessSensitiveData: false,
     */
     projects: [],
-    activeProject: ALL_PROJETCS
+    activeProject: ALL_PROJECTS
 
 };
 
 const getters = {
     userInfo: state => {
         return {
-            user: state.user,
+            user: state.user || {},
             token: state.token
         };
     },
@@ -109,8 +111,23 @@ const actions = {
         }
     },
 
-    storeUserInfo({commit, state}, userInfo) {
+    async storeUserInfo({commit, state}, userInfo) {
         commit(LOGIN_SUCCESS, userInfo);
+        try {
+            const res = await getProjects();
+            commit(GET_PROJECTS_SUCCESS, res.data);
+        } catch (err) {
+            const { response } = err;
+            commit(LOGIN_ERROR, response);
+        }
+    },
+
+    signOut({commit, state}) {
+        commit(RESET);
+    },
+
+    changeActiveProject({commit, state}, project) {
+        commit(CHANGE_ACTIVE_PROJECT, project);
     }
 
 };
@@ -145,12 +162,24 @@ const mutations = {
             status: errorResponse && errorResponse.status
         };
         state.projects = [];
+    },
+
+    [RESET](state) {
+        Object.assign(state, initialState);
+    },
+
+    [CHANGE_ACTIVE_PROJECT](state, project) {
+        const projNames = state.projects.map(proj => proj.name);
+        console.log(projNames);
+        if (project === ALL_PROJECTS || projNames.indexOf(project) > -1) {
+            state.activeProject = project;
+        }
     }
 };
 
 export default {
     namespaced: true,
-    state,
+    state: initialState,
     getters,
     actions,
     mutations

@@ -1,12 +1,16 @@
 import { expect } from 'chai';
 
 import superUser from '../fixtures/users/superUser.json';
+import projects from '../fixtures/projects/projectList.json';
 
-import { LOGIN_REQUEST, LOGIN_SUCCESS, GET_PROJECTS_SUCCESS, LOGIN_ERROR } from '@/store/mutation-types';
-import account from '@/store/account';
+import { ALL_PROJECTS } from '@/utils/constants';
+import {
+    LOGIN_REQUEST, LOGIN_SUCCESS, GET_PROJECTS_SUCCESS, LOGIN_ERROR, RESET, CHANGE_ACTIVE_PROJECT
+} from '@/store/mutation-types';
+import account, { initialState } from '@/store/account';
 import * as authApi from '@/api/auth-api';
 import * as projApi from '@/api/project-api';
-const projects = [];
+// const projects = [];
 
 describe('account', function() {
 
@@ -296,6 +300,47 @@ describe('account', function() {
 
         });
 
+        describe('RESET', function() {
+
+            it('resets the state to the initial value', function() {
+                const state = {
+                    ...initialState,
+                    user: superUser,
+                    token: testToken
+                };
+                account.mutations[RESET](state);
+                console.log(state);
+                expect(state).to.eql(initialState);
+            });
+
+        });
+
+        describe('CHANGE_ACTIVE_PROJECT', function() {
+
+            it('changes the project to the correct one', function() {
+                const newProject = projects[0].name;
+                const state = {
+                    ...initialState,
+                    projects,
+                    user: superUser,
+                    token: testToken
+                };
+                account.mutations[CHANGE_ACTIVE_PROJECT](state, newProject);
+                expect(state.activeProject).to.equal(newProject);
+            });
+
+            it('changes the project to ALL_PROJECTS', function() {
+                const state = {
+                    ...initialState,
+                    projects,
+                    activeProject: projects[0].name
+                };
+                account.mutations[CHANGE_ACTIVE_PROJECT](state, ALL_PROJECTS);
+                expect(state.activeProject).to.equal(ALL_PROJECTS);
+            });
+
+        });
+
     });
 
     describe('actions', function() {
@@ -391,6 +436,45 @@ describe('account', function() {
                 }, userInfo);
                 expect(commit.calledWithExactly(LOGIN_SUCCESS, userInfo)).to.be.true;
             });
+        });
+
+        describe('logout()', function() {
+
+            let commit, state;
+
+            beforeEach(function() {
+                commit = sinon.stub();
+                state = {};
+            });
+
+            it('commits a RESET mutation', function() {
+                account.actions.signOut({
+                    commit,
+                    state
+                });
+                expect(commit.calledWithExactly(RESET)).to.be.true;
+            });
+
+        });
+
+        describe('changeActiveProject()', function() {
+
+            let commit, state;
+
+            beforeEach(function() {
+                commit = sinon.stub();
+                state = {};
+            });
+
+            it('commits a CHANGE_ACTIVE_PROJECT mutation', function() {
+                const newProject = 'New Project';
+                account.actions.changeActiveProject({
+                    commit,
+                    state
+                }, newProject);
+                expect(commit.calledWithExactly(CHANGE_ACTIVE_PROJECT, newProject)).to.be.true;
+            });
+
         });
 
     });

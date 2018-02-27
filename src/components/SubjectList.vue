@@ -24,7 +24,7 @@
 import { mapGetters } from 'vuex';
 import { find } from 'lodash';
 
-import { ALL_PROJETCS } from '@/utils/constants';
+import { ALL_PROJECTS } from '@/utils/constants';
 
 import Pagination from '@/components/subcomponents/Pagination';
 
@@ -84,7 +84,7 @@ export default {
 
     mounted() {
         const { projects } = this;
-        const activeProject = this.activeProject !== ALL_PROJETCS ? find(projects, { name: this.activeProject }) : undefined;
+        const activeProject = this.activeProject !== ALL_PROJECTS ? find(projects, { name: this.activeProject }) : undefined;
         this.$store.dispatch('records/getSubjects', { activeProject });
     }
 };
