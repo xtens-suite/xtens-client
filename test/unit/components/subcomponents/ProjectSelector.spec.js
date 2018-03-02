@@ -3,6 +3,7 @@ import sinon from 'sinon';
 import { shallow, mount } from 'vue-test-utils';
 
 import bFormCheckbox from 'bootstrap-vue/es/components/form-checkbox/form-checkbox';
+import bFormSelect from 'bootstrap-vue/es/components/form-select/form-select';
 
 import store from '@/store';
 import router from '@/router';
@@ -43,7 +44,7 @@ describe('ProjectSelector.vue', function() {
             beforeEach(function() {
                 dstub = sinon.stub(store, 'dispatch');
 
-                wrapper = mount(ProjectSelector, {
+                wrapper = shallow(ProjectSelector, {
                     propsData: {
                         projects
                     },
@@ -51,10 +52,30 @@ describe('ProjectSelector.vue', function() {
                 });
             });
 
+            afterEach(function() {
+                dstub.restore();
+            });
+
+            it('dispatches the changeActiveProject action', function() {
+                const nextProject = wrapper.vm.$props.projects[0].name;
+                wrapper.setData({
+                    selectedProject: nextProject
+                });
+                wrapper.vm.activeProjectOnChange();
+                expect(dstub.calledWithExactly('account/changeActiveProject', nextProject)).to.be.true;
+            });
+
+            /*
             it('dispatches the changeActiveProject action', function() {
                 // TODO
-                wrapper.find();
-            });
+                wrapper.find({ref: 'changeEnabledCheckbox'}).trigger('click');
+                expect(wrapper.contains('#activeProjectSelect')).to.be.true;
+                const selectWrapper = wrapper.find('#activeProjectSelect');
+                selectWrapper.vm.value = selectWrapper.vm.options[0].value;
+                selectWrapper.trigger('change');
+                expect(dstub.calledOnce).to.be.true;
+                expect(dstub.calledWith('account/changeActiveProject'));
+            }); */
 
         });
 

@@ -1,7 +1,7 @@
 <template>
-    <b-modal ref="projectSelectorModal" title="Select Project">
+    <b-modal id="activeProjectSelectorModal" ref="projectSelectorModal" title="Select Project">
         <p>Changing project, all unsaved data will be lost.</p>
-        <b-form-checkbox v-model="changeEnabled"  />
+        <b-form-checkbox ref="changeEnabledCheckbox" v-model="changeEnabled"  />
         <b-form-group v-if="changeEnabled" horizontal
             :label-cols="4"
             breakpoint="md"
@@ -48,7 +48,7 @@ export default {
         activeProjectOnChange() {
             // TODO set this on Submit not on change
             this.$store.dispatch('account/changeActiveProject', this.selectedProject);
-            this.$refs.projectSelectorModal.hide();
+            this.$root.$emit('bv::show::modal', 'activeProjectSelectorModal');
         }
 
     }
