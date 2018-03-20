@@ -80,12 +80,22 @@ export default {
         })
     },
 
-    methods: {},
+    methods: {
+        getSubjects() {
+            const { projects } = this;
+            const activeProject = this.activeProject !== ALL_PROJECTS ? find(projects, { name: this.activeProject }) : undefined;
+            this.$store.dispatch('records/getSubjects', { activeProject });
+        }
+    },
+
+    watch: {
+        activeProject() {
+            this.getSubjects();
+        }
+    },
 
     mounted() {
-        const { projects } = this;
-        const activeProject = this.activeProject !== ALL_PROJECTS ? find(projects, { name: this.activeProject }) : undefined;
-        this.$store.dispatch('records/getSubjects', { activeProject });
+        this.getSubjects();
     }
 };
 </script>

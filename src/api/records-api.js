@@ -9,7 +9,7 @@ export async function getSubjects({
 } = {}) {
     const response = await axios.get('/api/subject', {
         params: {
-            project: activeProject,
+            project: activeProject ? activeProject.id : undefined,
             populate: 'type',
             limit,
             skip,

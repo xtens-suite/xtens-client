@@ -1,4 +1,4 @@
-import { isEmpty, uniq, flatten } from 'lodash';
+import { isEmpty, uniq, flatten, clone } from 'lodash';
 import axios from 'axios';
 
 import { WHEEL, ADMIN, STANDARD, ALL_PROJECTS } from '@/utils/constants';
@@ -179,7 +179,7 @@ const mutations = {
 
 export default {
     namespaced: true,
-    state: initialState,
+    state: clone(initialState),
     getters,
     actions,
     mutations

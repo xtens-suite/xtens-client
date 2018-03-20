@@ -8,10 +8,12 @@
 
             <!-- Right aligned nav items -->
             <b-navbar-nav class="ml-auto">
+                <div v-if="isAuthenticated">
+                    <b-button @click="openProjectModal" >{{ activeProject }}</b-button>
+                    <project-selector ref="activeProjectSelector" :projects="projects" />
+                </div>
 
-                <b-button>{{ activeProject }}</b-button>
-
-                <b-nav-item-dropdown id="navbarUserProfileDropdown" right v-if="isAuthenticated">
+                <b-nav-item-dropdown id="navbarUserProfileDropdown" v-if="isAuthenticated" right>
                     <template slot="button-content">
                         <em id="navbarUsername">{{ login }}</em>
                     </template>
@@ -23,8 +25,13 @@
     </b-navbar>
 </template>
 <script>
+import ProjectSelector from '@/components/subcomponents/ProjectSelector';
+
 export default {
 
+    components: {
+        projectSelector: ProjectSelector
+    },
     /*
     data() {
         return {
@@ -58,9 +65,14 @@ export default {
     }, */
 
     methods: {
+
         signOut() {
             this.$store.dispatch('account/signOut');
             this.$router.push('login');
+        },
+
+        openProjectModal() {
+            this.$refs.activeProjectSelector.openModal();
         }
     }
 

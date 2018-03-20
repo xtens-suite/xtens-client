@@ -29,7 +29,8 @@
 </template>
 
 <script>
-import { ALL_PROJETCS } from '@/utils/constants';
+import { find } from 'lodash';
+import { ALL_PROJECTS } from '@/utils/constants';
 
 const recordType2ActionMap = {
     'subject': 'records/getSubjects'
@@ -69,7 +70,9 @@ export default {
         onPageChange(pageIndex) {
             if (pageIndex < 0 || pageIndex >= this.totalPages) return;
             const { projects, itemsPerPage } = this;
-            const activeProject = this.activeProject !== ALL_PROJETCS ? find(projects, { name: this.activeProject }) : undefined;
+            // const actProj = find(projects, proj => proj.name === this.activeProject);
+            // const allProj = ALL_PROJECTS;
+            const activeProject = this.activeProject !== ALL_PROJECTS ? find(projects, { name: this.activeProject }) : undefined;
             this.$store.dispatch(recordType2ActionMap[this.recordType], {
                 activeProject,
                 limit: itemsPerPage,

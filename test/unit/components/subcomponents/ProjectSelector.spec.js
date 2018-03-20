@@ -18,12 +18,18 @@ describe('ProjectSelector.vue', function() {
         let wrapper;
 
         beforeEach(function() {
+            // dstub = sinon.stub(store, 'dispatch');
             wrapper = shallow(ProjectSelector, {
                 propsData: {
                     projects
-                }
+                }// ,
+                // store
             });
         });
+        /*
+        afterEach(function() {
+            dstub.restore();
+        }); */
 
         it('does not contain the project selector if the checkbox is not ticked', function() {
             expect(wrapper.contains('#activeProjectSelect')).to.be.false;
@@ -61,8 +67,14 @@ describe('ProjectSelector.vue', function() {
                 wrapper.setData({
                     selectedProject: nextProject
                 });
-                wrapper.vm.activeProjectOnChange();
+                wrapper.vm.changeActiveProject();
                 expect(dstub.calledWithExactly('account/changeActiveProject', nextProject)).to.be.true;
+            });
+
+            it('closes the modal', function() {
+                const spy = sinon.spy(wrapper.vm.$root, '$emit');
+                wrapper.vm.changeActiveProject();
+                expect(spy.calledWithExactly('bv::hide::modal', 'activeProjectSelectorModal'));
             });
 
             /*
@@ -76,6 +88,21 @@ describe('ProjectSelector.vue', function() {
                 expect(dstub.calledOnce).to.be.true;
                 expect(dstub.calledWith('account/changeActiveProject'));
             }); */
+
+        });
+
+        describe('openModal()', function() {
+
+            it('opens the modal', function() {
+                const wrapper = shallow(ProjectSelector, {
+                    propsData: {
+                        projects
+                    }
+                });
+                const spy = sinon.spy(wrapper.vm.$root, '$emit');
+                wrapper.vm.openModal();
+                expect(spy.calledWithExactly('bv::show::modal', 'activeProjectSelectorModal'));
+            });
 
         });
 
