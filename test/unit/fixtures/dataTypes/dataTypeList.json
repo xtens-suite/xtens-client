@@ -1,0 +1,681 @@
+[
+    {
+        "parents": [
+            {
+                "name": "Patient",
+                "model": "Subject",
+                "id": 22,
+                "project": 1,
+                "createdAt": "2015-06-18T10:15:55.614Z",
+                "updatedAt": "2017-02-13T11:46:16.154Z",
+                "superType": 1
+            },
+            {
+                "name": "Fluid",
+                "model": "Sample",
+                "id": 32,
+                "project": 1,
+                "createdAt": "2015-06-18T15:08:19.696Z",
+                "updatedAt": "2017-02-09T12:11:43.610Z",
+                "superType": 3
+            }
+        ],
+        "superType": 3,
+        "project": 1,
+        "name": "Fluid",
+        "model": "Sample",
+        "id": 32,
+        "createdAt": "2015-06-18T15:08:19.696Z",
+        "updatedAt": "2017-02-09T12:11:43.610Z"
+    },
+    {
+        "parents": [
+            {
+                "name": "Patient",
+                "model": "Subject",
+                "id": 23,
+                "project": 2,
+                "createdAt": "2015-06-18T10:15:55.614Z",
+                "updatedAt": "2017-02-13T11:46:16.154Z",
+                "superType": 1
+            },
+            {
+                "name": "Fluid",
+                "model": "Sample",
+                "id": 33,
+                "project": 2,
+                "createdAt": "2015-06-18T15:08:19.696Z",
+                "updatedAt": "2017-02-09T12:11:43.610Z",
+                "superType": 3
+            }
+        ],
+        "superType": 3,
+        "project": 2,
+        "name": "Fluid",
+        "model": "Sample",
+        "id": 33,
+        "createdAt": "2015-06-18T15:08:19.696Z",
+        "updatedAt": "2017-02-09T12:11:43.610Z"
+    },
+    {
+        "parents": [
+            {
+                "name": "DNA",
+                "model": "Sample",
+                "id": 4,
+                "project": 5,
+                "createdAt": "2015-06-18T15:18:46.288Z",
+                "updatedAt": "2017-10-20T08:08:16.669Z",
+                "superType": 4
+            }
+        ],
+        "superType": 17,
+        "project": 5,
+        "name": "ALK -Fish",
+        "model": "Data",
+        "id": 17,
+        "createdAt": "2015-12-22T11:21:29.730Z",
+        "updatedAt": "2015-12-22T11:21:29.730Z"
+    },
+    {
+        "parents": [
+            {
+                "name": "Patient",
+                "model": "Subject",
+                "id": 1,
+                "project": 5,
+                "createdAt": "2015-06-18T10:15:55.614Z",
+                "updatedAt": "2017-09-04T14:09:35.758Z",
+                "superType": 1
+            }
+        ],
+        "superType": 2,
+        "project": 5,
+        "name": "Tissue",
+        "model": "Sample",
+        "id": 2,
+        "createdAt": "2015-06-18T11:00:36.447Z",
+        "updatedAt": "2017-07-13T13:43:24.259Z"
+    },
+    {
+        "parents": [
+            {
+                "name": "Patient",
+                "model": "Subject",
+                "id": 1,
+                "project": 5,
+                "createdAt": "2015-06-18T10:15:55.614Z",
+                "updatedAt": "2017-09-04T14:09:35.758Z",
+                "superType": 1
+            }
+        ],
+        "superType": 9,
+        "project": 5,
+        "name": "MRI",
+        "model": "Data",
+        "id": 9,
+        "createdAt": "2015-09-06T21:27:13.933Z",
+        "updatedAt": "2015-09-06T21:27:13.933Z"
+    },
+    {
+        "parents": [
+            {
+                "name": "Patient",
+                "model": "Subject",
+                "id": 22,
+                "project": 1,
+                "createdAt": "2015-06-18T10:15:55.614Z",
+                "updatedAt": "2017-02-13T11:46:16.154Z",
+                "superType": 1
+            }
+        ],
+        "superType": 2,
+        "project": 1,
+        "name": "Tissue",
+        "model": "Sample",
+        "id": 27,
+        "createdAt": "2015-06-18T11:00:36.447Z",
+        "updatedAt": "2015-12-14T16:40:16.908Z"
+    },
+    {
+        "parents": [
+            {
+                "name": "Patient",
+                "model": "Subject",
+                "id": 1,
+                "project": 5,
+                "createdAt": "2015-06-18T10:15:55.614Z",
+                "updatedAt": "2017-09-04T14:09:35.758Z",
+                "superType": 1
+            },
+            {
+                "name": "DNA",
+                "model": "Sample",
+                "id": 4,
+                "project": 5,
+                "createdAt": "2015-06-18T15:18:46.288Z",
+                "updatedAt": "2017-10-20T08:08:16.669Z",
+                "superType": 4
+            }
+        ],
+        "superType": 6,
+        "project": 5,
+        "name": "aCGH - Raw",
+        "model": "Data",
+        "id": 6,
+        "createdAt": "2015-07-24T12:41:41.913Z",
+        "updatedAt": "2015-09-29T10:37:23.176Z"
+    },
+    {
+        "parents": [
+            {
+                "name": "Microarray - Raw",
+                "model": "Data",
+                "id": 11,
+                "project": 5,
+                "createdAt": "2015-12-13T16:32:17.464Z",
+                "updatedAt": "2017-07-13T13:08:32.050Z",
+                "superType": 11
+            }
+        ],
+        "superType": 12,
+        "project": 5,
+        "name": "Microarray - MAS5",
+        "model": "Data",
+        "id": 12,
+        "createdAt": "2015-12-13T16:37:11.555Z",
+        "updatedAt": "2015-12-13T16:37:11.555Z"
+    },
+    {
+        "parents": [
+            {
+                "name": "DNA",
+                "model": "Sample",
+                "id": 4,
+                "project": 5,
+                "createdAt": "2015-06-18T15:18:46.288Z",
+                "updatedAt": "2017-10-20T08:08:16.669Z",
+                "superType": 4
+            }
+        ],
+        "superType": 15,
+        "project": 5,
+        "name": "ALK - Mutation",
+        "model": "Data",
+        "id": 15,
+        "createdAt": "2015-12-14T14:38:58.166Z",
+        "updatedAt": "2017-07-13T13:15:51.308Z"
+    },
+    {
+        "parents": [
+            {
+                "name": "Tissue",
+                "model": "Sample",
+                "id": 2,
+                "project": 5,
+                "createdAt": "2015-06-18T11:00:36.447Z",
+                "updatedAt": "2017-07-13T13:43:24.259Z",
+                "superType": 2
+            },
+            {
+                "name": "Fluid",
+                "model": "Sample",
+                "id": 3,
+                "project": 5,
+                "createdAt": "2015-06-18T15:08:19.696Z",
+                "updatedAt": "2017-09-22T10:11:54.688Z",
+                "superType": 3
+            }
+        ],
+        "superType": 5,
+        "project": 5,
+        "name": "RNA",
+        "model": "Sample",
+        "id": 5,
+        "createdAt": "2015-06-18T15:23:21.553Z",
+        "updatedAt": "2017-07-13T13:24:58.542Z"
+    },
+    {
+        "parents": [
+            {
+                "name": "aCGH - Raw",
+                "model": "Data",
+                "id": 6,
+                "project": 5,
+                "createdAt": "2015-07-24T12:41:41.913Z",
+                "updatedAt": "2015-09-29T10:37:23.176Z",
+                "superType": 6
+            }
+        ],
+        "superType": 7,
+        "project": 5,
+        "name": "aCGH - Processed",
+        "model": "Data",
+        "id": 7,
+        "createdAt": "2015-08-18T17:26:12.476Z",
+        "updatedAt": "2015-12-27T22:38:35.197Z"
+    },
+    {
+        "parents": [
+            {
+                "name": "Microarray - MAS5",
+                "model": "Data",
+                "id": 12,
+                "project": 5,
+                "createdAt": "2015-12-13T16:37:11.555Z",
+                "updatedAt": "2015-12-13T16:37:11.555Z",
+                "superType": 12
+            }
+        ],
+        "superType": 13,
+        "project": 5,
+        "name": "Microarray - NB Report",
+        "model": "Data",
+        "id": 13,
+        "createdAt": "2015-12-13T16:56:12.969Z",
+        "updatedAt": "2015-12-13T16:56:12.969Z"
+    },
+    {
+        "parents": [
+            {
+                "name": "aCGH - Processed",
+                "model": "Data",
+                "id": 7,
+                "project": 5,
+                "createdAt": "2015-08-18T17:26:12.476Z",
+                "updatedAt": "2015-12-27T22:38:35.197Z",
+                "superType": 7
+            }
+        ],
+        "superType": 8,
+        "project": 5,
+        "name": "CNV",
+        "model": "Data",
+        "id": 8,
+        "createdAt": "2015-08-19T14:10:44.347Z",
+        "updatedAt": "2015-12-22T11:19:00.123Z"
+    },
+    {
+        "parents": [
+            {
+                "name": "aCGH - Processed",
+                "model": "Data",
+                "id": 7,
+                "project": 5,
+                "createdAt": "2015-08-18T17:26:12.476Z",
+                "updatedAt": "2015-12-27T22:38:35.197Z",
+                "superType": 7
+            }
+        ],
+        "superType": 18,
+        "project": 5,
+        "name": "Genomic Profile",
+        "model": "Data",
+        "id": 18,
+        "createdAt": "2016-05-16T11:02:13.244Z",
+        "updatedAt": "2017-06-01T13:12:35.950Z"
+    },
+    {
+        "parents": [
+            {
+                "name": "Patient",
+                "model": "Subject",
+                "id": 1,
+                "project": 5,
+                "createdAt": "2015-06-18T10:15:55.614Z",
+                "updatedAt": "2017-09-04T14:09:35.758Z",
+                "superType": 1
+            },
+            {
+                "name": "Fluid",
+                "model": "Sample",
+                "id": 3,
+                "project": 5,
+                "createdAt": "2015-06-18T15:08:19.696Z",
+                "updatedAt": "2017-09-22T10:11:54.688Z",
+                "superType": 3
+            }
+        ],
+        "superType": 3,
+        "project": 5,
+        "name": "Fluid",
+        "model": "Sample",
+        "id": 3,
+        "createdAt": "2015-06-18T15:08:19.696Z",
+        "updatedAt": "2017-09-22T10:11:54.688Z"
+    },
+    {
+        "parents": [
+            {
+                "name": "Patient",
+                "model": "Subject",
+                "id": 1,
+                "project": 5,
+                "createdAt": "2015-06-18T10:15:55.614Z",
+                "updatedAt": "2017-09-04T14:09:35.758Z",
+                "superType": 1
+            }
+        ],
+        "superType": 16,
+        "project": 5,
+        "name": "NB Clinical Information",
+        "model": "Data",
+        "id": 16,
+        "createdAt": "2015-12-15T22:04:36.848Z",
+        "updatedAt": "2017-09-26T10:40:57.535Z"
+    },
+    {
+        "parents": [],
+        "superType": 1,
+        "project": 1,
+        "name": "Patient",
+        "model": "Subject",
+        "id": 22,
+        "createdAt": "2015-06-18T10:15:55.614Z",
+        "updatedAt": "2017-02-13T11:46:16.154Z"
+    },
+    {
+        "parents": [
+            {
+                "name": "Tissue",
+                "model": "Sample",
+                "id": 27,
+                "project": 1,
+                "createdAt": "2015-06-18T11:00:36.447Z",
+                "updatedAt": "2015-12-14T16:40:16.908Z",
+                "superType": 2
+            },
+            {
+                "name": "Fluid",
+                "model": "Sample",
+                "id": 32,
+                "project": 1,
+                "createdAt": "2015-06-18T15:08:19.696Z",
+                "updatedAt": "2017-02-09T12:11:43.610Z",
+                "superType": 3
+            }
+        ],
+        "superType": 4,
+        "project": 1,
+        "name": "DNA",
+        "model": "Sample",
+        "id": 37,
+        "createdAt": "2015-06-18T15:18:46.288Z",
+        "updatedAt": "2015-12-15T18:03:31.739Z"
+    },
+    {
+        "parents": [
+            {
+                "name": "Tissue",
+                "model": "Sample",
+                "id": 27,
+                "project": 1,
+                "createdAt": "2015-06-18T11:00:36.447Z",
+                "updatedAt": "2015-12-14T16:40:16.908Z",
+                "superType": 2
+            },
+            {
+                "name": "Fluid",
+                "model": "Sample",
+                "id": 32,
+                "project": 1,
+                "createdAt": "2015-06-18T15:08:19.696Z",
+                "updatedAt": "2017-02-09T12:11:43.610Z",
+                "superType": 3
+            }
+        ],
+        "superType": 5,
+        "project": 1,
+        "name": "RNA",
+        "model": "Sample",
+        "id": 42,
+        "createdAt": "2015-06-18T15:23:21.553Z",
+        "updatedAt": "2015-12-15T10:38:15.102Z"
+    },
+    {
+        "parents": [],
+        "superType": 1,
+        "project": 2,
+        "name": "Patient",
+        "model": "Subject",
+        "id": 23,
+        "createdAt": "2015-06-18T10:15:55.614Z",
+        "updatedAt": "2017-02-13T11:46:16.154Z"
+    },
+    {
+        "parents": [
+            {
+                "name": "Patient",
+                "model": "Subject",
+                "id": 23,
+                "project": 2,
+                "createdAt": "2015-06-18T10:15:55.614Z",
+                "updatedAt": "2017-02-13T11:46:16.154Z",
+                "superType": 1
+            }
+        ],
+        "superType": 2,
+        "project": 2,
+        "name": "Tissue",
+        "model": "Sample",
+        "id": 28,
+        "createdAt": "2015-06-18T11:00:36.447Z",
+        "updatedAt": "2015-12-14T16:40:16.908Z"
+    },
+    {
+        "parents": [
+            {
+                "name": "Tissue",
+                "model": "Sample",
+                "id": 28,
+                "project": 2,
+                "createdAt": "2015-06-18T11:00:36.447Z",
+                "updatedAt": "2015-12-14T16:40:16.908Z",
+                "superType": 2
+            },
+            {
+                "name": "Fluid",
+                "model": "Sample",
+                "id": 33,
+                "project": 2,
+                "createdAt": "2015-06-18T15:08:19.696Z",
+                "updatedAt": "2017-02-09T12:11:43.610Z",
+                "superType": 3
+            }
+        ],
+        "superType": 4,
+        "project": 2,
+        "name": "DNA",
+        "model": "Sample",
+        "id": 38,
+        "createdAt": "2015-06-18T15:18:46.288Z",
+        "updatedAt": "2015-12-15T18:03:31.739Z"
+    },
+    {
+        "parents": [
+            {
+                "name": "Tissue",
+                "model": "Sample",
+                "id": 28,
+                "project": 2,
+                "createdAt": "2015-06-18T11:00:36.447Z",
+                "updatedAt": "2015-12-14T16:40:16.908Z",
+                "superType": 2
+            },
+            {
+                "name": "Fluid",
+                "model": "Sample",
+                "id": 33,
+                "project": 2,
+                "createdAt": "2015-06-18T15:08:19.696Z",
+                "updatedAt": "2017-02-09T12:11:43.610Z",
+                "superType": 3
+            }
+        ],
+        "superType": 5,
+        "project": 2,
+        "name": "RNA",
+        "model": "Sample",
+        "id": 43,
+        "createdAt": "2015-06-18T15:23:21.553Z",
+        "updatedAt": "2015-12-15T10:38:15.102Z"
+    },
+    {
+        "parents": [
+            {
+                "name": "Tissue",
+                "model": "Sample",
+                "id": 2,
+                "project": 5,
+                "createdAt": "2015-06-18T11:00:36.447Z",
+                "updatedAt": "2017-07-13T13:43:24.259Z",
+                "superType": 2
+            },
+            {
+                "name": "Fluid",
+                "model": "Sample",
+                "id": 3,
+                "project": 5,
+                "createdAt": "2015-06-18T15:08:19.696Z",
+                "updatedAt": "2017-09-22T10:11:54.688Z",
+                "superType": 3
+            }
+        ],
+        "superType": 4,
+        "project": 5,
+        "name": "DNA",
+        "model": "Sample",
+        "id": 4,
+        "createdAt": "2015-06-18T15:18:46.288Z",
+        "updatedAt": "2017-10-20T08:08:16.669Z"
+    },
+    {
+        "parents": [
+            {
+                "name": "Patient",
+                "model": "Subject",
+                "id": 22,
+                "project": 1,
+                "createdAt": "2015-06-18T10:15:55.614Z",
+                "updatedAt": "2017-02-13T11:46:16.154Z",
+                "superType": 1
+            },
+            {
+                "name": "DNA",
+                "model": "Sample",
+                "id": 37,
+                "project": 1,
+                "createdAt": "2015-06-18T15:18:46.288Z",
+                "updatedAt": "2015-12-15T18:03:31.739Z",
+                "superType": 4
+            }
+        ],
+        "superType": 6,
+        "project": 1,
+        "name": "aCGH - Raw",
+        "model": "Data",
+        "id": 47,
+        "createdAt": "2015-07-24T12:41:41.913Z",
+        "updatedAt": "2015-09-29T10:37:23.176Z"
+    },
+    {
+        "parents": [
+            {
+                "name": "aCGH - Raw",
+                "model": "Data",
+                "id": 47,
+                "project": 1,
+                "createdAt": "2015-07-24T12:41:41.913Z",
+                "updatedAt": "2015-09-29T10:37:23.176Z",
+                "superType": 6
+            }
+        ],
+        "superType": 7,
+        "project": 1,
+        "name": "aCGH - Processed",
+        "model": "Data",
+        "id": 52,
+        "createdAt": "2015-08-18T17:26:12.476Z",
+        "updatedAt": "2015-12-27T22:38:35.197Z"
+    },
+    {
+        "parents": [
+            {
+                "name": "aCGH - Processed",
+                "model": "Data",
+                "id": 52,
+                "project": 1,
+                "createdAt": "2015-08-18T17:26:12.476Z",
+                "updatedAt": "2015-12-27T22:38:35.197Z",
+                "superType": 7
+            }
+        ],
+        "superType": 8,
+        "project": 1,
+        "name": "CNV",
+        "model": "Data",
+        "id": 57,
+        "createdAt": "2015-08-19T14:10:44.347Z",
+        "updatedAt": "2015-12-22T11:19:00.123Z"
+    },
+    {
+        "parents": [
+            {
+                "name": "RNA",
+                "model": "Sample",
+                "id": 42,
+                "project": 1,
+                "createdAt": "2015-06-18T15:23:21.553Z",
+                "updatedAt": "2015-12-15T10:38:15.102Z",
+                "superType": 5
+            }
+        ],
+        "superType": 11,
+        "project": 1,
+        "name": "Microarray - Raw",
+        "model": "Data",
+        "id": 67,
+        "createdAt": "2015-12-13T16:32:17.464Z",
+        "updatedAt": "2015-12-13T16:34:58.600Z"
+    },
+    {
+        "parents": [
+            {
+                "name": "Microarray - Raw",
+                "model": "Data",
+                "id": 67,
+                "project": 1,
+                "createdAt": "2015-12-13T16:32:17.464Z",
+                "updatedAt": "2015-12-13T16:34:58.600Z",
+                "superType": 11
+            }
+        ],
+        "superType": 12,
+        "project": 1,
+        "name": "Microarray - MAS5",
+        "model": "Data",
+        "id": 72,
+        "createdAt": "2015-12-13T16:37:11.555Z",
+        "updatedAt": "2015-12-13T16:37:11.555Z"
+    },
+    {
+        "parents": [
+            {
+                "name": "Microarray - MAS5",
+                "model": "Data",
+                "id": 72,
+                "project": 1,
+                "createdAt": "2015-12-13T16:37:11.555Z",
+                "updatedAt": "2015-12-13T16:37:11.555Z",
+                "superType": 12
+            }
+        ],
+        "superType": 13,
+        "project": 1,
+        "name": "Microarray - NB Report",
+        "model": "Data",
+        "id": 77,
+        "createdAt": "2015-12-13T16:56:12.969Z",
+        "updatedAt": "2015-12-13T16:56:12.969Z"
+    }
+]

@@ -9,6 +9,9 @@ export const RESET = 'RESET';
 export const REMOTE_REQUEST = 'REMOTE_REQUEST';
 export const REMOTE_ERROR = 'REMOTE_ERROR';
 
+// DataTypeList
+export const DATA_TYPES_SUCCESS = 'DATA_TYPES_SUCCESS';
+
 // SubjectList
 export const SUBJECTS_SUCCESS = 'SUBJECTS_SUCCESS';
 

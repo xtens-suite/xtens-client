@@ -18,3 +18,21 @@ export async function getSubjects({
     });
     return response;
 }
+
+export async function getDataTypes({
+    activeProject,
+    limit = undefined,
+    skip = 0,
+    sort = DEFAULT_SORTING_CRITERION
+} = {}) {
+    const response = await axios.get('api/dataType', {
+        params: {
+            project: activeProject ? activeProject.id : undefined,
+            populate: ['parents', 'project'],
+            limit,
+            skip,
+            sort
+        }
+    });
+    return response;
+}

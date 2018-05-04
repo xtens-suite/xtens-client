@@ -3,6 +3,8 @@ import Router from 'vue-router';
 import HelloWorld from '@/components/HelloWorld';
 import LoginForm from '@/components/LoginForm';
 import SubjectList from '@/components/SubjectList';
+import DataTypeList from '@/components/DataTypeList';
+import DataTypeEdit from '@/components/DataTypeEdit';
 
 Vue.use(Router);
 
@@ -24,6 +26,18 @@ export default new Router({
             path: '/subjects',
             name: 'SubjectList',
             component: SubjectList,
+            props: true
+        },
+        {
+            path: '/data-types',
+            name: 'DataTypeList',
+            component: DataTypeList,
+            props: true
+        },
+        {
+            path: 'data-type/:id',
+            name: 'DataTypeEdit',
+            component: DataTypeEdit,
             props: true
         }
     ]

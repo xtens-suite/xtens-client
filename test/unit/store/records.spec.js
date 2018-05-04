@@ -2,9 +2,10 @@ import { expect } from 'chai';
 
 import { cloneDeep } from 'lodash';
 
-import { REMOTE_REQUEST, SUBJECTS_SUCCESS, REMOTE_ERROR } from '@/store/mutation-types';
+import { REMOTE_REQUEST, SUBJECTS_SUCCESS, DATA_TYPES_SUCCESS, REMOTE_ERROR } from '@/store/mutation-types';
 
 import records from '@/store/records';
+import dataTypes from '../fixtures/dataTypes/dataTypeList';
 import subjects from '../fixtures/subjects/subjectList';
 
 import * as recordsApi from '@/api/records-api';
@@ -31,6 +32,14 @@ const resHeaders = {
     link: '<http://localhost:1337/subject?limit=30&skip=30>; rel=next, <http://localhost:1337/subject?limit=30&skip=1590>; rel=last'
 };
 
+const dtHeaders = {
+    'x-current-page': '0',
+    'x-page-size': '30',
+    'x-total-count': '45',
+    'x-total-pages': '2',
+    link: '<http://localhost:1337/dataType?limit=30&skip=30>; rel=next, <http://localhost:1337/dataType?limit=30&skip=30>; rel=last'
+};
+
 describe('records', function() {
 
     describe('getters', function() {
@@ -51,26 +60,78 @@ describe('records', function() {
 
     describe('actions', function() {
 
-        let commit, getSubjStub, correctPayload, malformedPayload, state;
+        let commit, getRecordStub, correctPayload, malformedPayload, state;
 
-        describe('getSubject', function() {
+        describe('getDataTypes', function() {
 
             beforeEach(function() {
                 commit = sinon.stub();
-
-                getSubjStub = sinon.stub(recordsApi, 'getSubjects');
-                correctPayload = {};
+                getRecordStub = sinon.stub(recordsApi, 'getDataTypes');
                 malformedPayload = { '': 'this is malformed' };
-                getSubjStub.withArgs(correctPayload).returns({
-                    data: subjects,
-                    headers: resHeaders
+                getRecordStub.withArgs(correctPayload).returns({
+                    data: dataTypes,
+                    headers: dtHeaders
                 });
-                getSubjStub.withArgs(malformedPayload).throws();
+                getRecordStub.withArgs(malformedPayload).throws();
                 state = cloneDeep(testState);
             });
 
             afterEach(function() {
-                getSubjStub.restore();
+                getRecordStub.restore();
+            });
+
+            it('commits a REMOTE_REQUEST event', function(done) {
+                records.actions.getDataTypes({commit, state}, correctPayload)
+                .then(() => {
+                    expect(commit.calledWithExactly(REMOTE_REQUEST)).to.be.true;
+                    done();
+                }).catch(err => {
+                    done(err);
+                });
+            });
+
+            it('commits a DATA_TYPE_SUCCESS event with headers and dataTypes as properties of the second argument', function(done) {
+                records.actions.getDataTypes({commit, state}, correctPayload)
+                .then(() => {
+                    const secondArg = {
+                        dataTypes,
+                        headers: dtHeaders
+                    };
+                    expect(commit.calledWithExactly(DATA_TYPES_SUCCESS, secondArg)).to.be.true;
+                    done();
+                }).catch(done);
+            });
+
+            it('commits a REMOTE_ERROR event if an error is throw by recordsApi.getDataTypes()', function(done) {
+                records.actions.getDataTypes({commit, state}, malformedPayload)
+                .then(() => {
+                    expect(commit.calledWith(REMOTE_ERROR)).to.be.true;
+                    done();
+                }).catch(err => {
+                    done(err);
+                });
+            });
+
+        });
+
+        describe('getSubjects', function() {
+
+            beforeEach(function() {
+                commit = sinon.stub();
+
+                getRecordStub = sinon.stub(recordsApi, 'getSubjects');
+                correctPayload = {};
+                malformedPayload = { '': 'this is malformed' };
+                getRecordStub.withArgs(correctPayload).returns({
+                    data: subjects,
+                    headers: resHeaders
+                });
+                getRecordStub.withArgs(malformedPayload).throws();
+                state = cloneDeep(testState);
+            });
+
+            afterEach(function() {
+                getRecordStub.restore();
             });
 
             it('commits a REMOTE_REQUEST event', function(done) {
@@ -100,7 +161,7 @@ describe('records', function() {
             it('triggers a call of the api.getSubjects() method with correct \'payload\' argument', function(done) {
                 records.actions.getSubjects({commit, state}, correctPayload)
                 .then(() => {
-                    expect(getSubjStub.calledWithExactly(correctPayload)).to.be.true;
+                    expect(getRecordStub.calledWithExactly(correctPayload)).to.be.true;
                     done();
                 }).catch(err => {
                     done(err);
@@ -172,7 +233,7 @@ describe('records', function() {
                 };
                 records.mutations[REMOTE_ERROR](testState, errorResponse);
                 expect(testState.error).to.eql(errorResponse);
-            }); 
+            });
 
         });
 

@@ -8,6 +8,11 @@
 
             <!-- Right aligned nav items -->
             <b-navbar-nav class="ml-auto">
+
+                <b-nav-item-dropdown id="" v-if="isAdmin" text="Admin Pages">
+                    <b-dropdown-item href="/data-types">Data Types</b-dropdown-item>
+                </b-nav-item-dropdown>
+
                 <div v-if="isAuthenticated">
                     <b-button @click="openProjectModal" >{{ activeProject }}</b-button>
                     <project-selector ref="activeProjectSelector" :projects="projects" />
@@ -43,6 +48,7 @@ export default {
         login: String,
         userId: Number,
         isAuthenticated: Boolean,
+        isAdmin: Boolean,
         projects: Array,
         activeProject: String
     },

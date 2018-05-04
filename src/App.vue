@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <app-navbar :login="login" :user-id="userId" :is-authenticated="isAuthenticated"
+    <app-navbar :login="login" :user-id="userId" :is-authenticated="isAuthenticated" :is-admin="isAdmin"
         :projects="projects" :active-project="activeProject"
     />
     <router-view />
@@ -25,6 +25,7 @@ export default {
         ...mapGetters({
             'userInfo': 'account/userInfo',
             'isAuthenticated': 'account/isAuthenticated',
+            'isAdmin': 'account/isAdmin',
             'projects': 'account/projects',
             'activeProject': 'account/activeProject'
         }),
