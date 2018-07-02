@@ -21,45 +21,12 @@ describe('LoginForm.vue', function() {
         });
     });
 
-    /*
-    describe('onError()', function() {
-
-        it('sets loginFailed to true if the response status is Unauthorized', function() {
-            const error = {
-                response: {
-                    status: 401,
-                    data: {}
-                }
-            };
-            const Constructor = Vue.extend(LoginForm);
-            const vm = new Constructor();
-            vm.onError(error);
-            expect(vm.loginFailed).to.be.true;
-        });
-
-    }); */
-
     describe('onSubmit()', function() {
 
         let stub;
 
         beforeEach(function() {
             stub = sinon.stub(store, 'dispatch');
-            /*
-            state = {
-                account: account.state
-            };
-
-            actions = {
-                'account/authenticate': sinon.stub()
-            };
-
-            store = new Vuex.Store({
-                state,
-                actions,
-                getters: account.getters
-            }); */
-
         });
 
         afterEach(function() {

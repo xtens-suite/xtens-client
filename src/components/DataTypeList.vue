@@ -4,7 +4,7 @@
         <b-table striped hover paginate :items="records" :fields="fields" >
             <template slot="links" slot-scope="data">
                 <div>
-                    <a :href="`/data-type/${id}`">Edit</a>
+                    <a :href="`/data-type/${data.item.id}`">Edit</a>
                 </div>
             </template>
         </b-table>

@@ -13,6 +13,19 @@ if (process.argv.some(isDebug)) {
     reporters = [];
 }
 
+function parseTestPattern(argv) {
+    let found = false;
+    const pattern = argv.map(function(v) {
+        if (found) {
+            return v;
+        }
+        if (v === '--') {
+            found = true;
+        }
+    }).filter(function(a) { return a; }).join(' ');
+    return pattern ? ['--grep', pattern] : [];
+}
+
 module.exports = function(config) {
     config.set({
         // to run in additional browsers:
@@ -39,6 +52,9 @@ module.exports = function(config) {
                 { type: 'lcov', subdir: '.' },
                 { type: 'text-summary' }
             ]
+        },
+        client: {
+            args: parseTestPattern(process.argv)
         }
     });
 };

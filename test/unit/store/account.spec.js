@@ -418,15 +418,22 @@ describe('account', function() {
 
         describe('storeUserInfo()', function() {
 
-            let commit, state, userInfo;
+            let commit, state, userInfo, getProjectsFnc;
 
             beforeEach(function() {
                 commit = sinon.stub();
+                getProjectsFnc = sinon.stub(projApi, 'getProjects').returns({
+                    data: projects
+                });
                 userInfo = {
                     user: {},
                     token: 'bäø'
                 };
                 state = {};
+            });
+
+            afterEach(function() {
+                getProjectsFnc.restore();
             });
 
             it('commits a LOGIN_SUCCESS mutation', function() {
@@ -436,6 +443,20 @@ describe('account', function() {
                 }, userInfo);
                 expect(commit.calledWithExactly(LOGIN_SUCCESS, userInfo)).to.be.true;
             });
+
+            it('commits a GET_PROJECTS_SUCCESS event', function(done) {
+                account.actions.storeUserInfo({
+                    commit,
+                    state
+                }, userInfo).then(() => {
+                    expect(getProjectsFnc.calledOnce).to.be.true;
+                    expect(commit.calledWithExactly(GET_PROJECTS_SUCCESS, projects)).to.be.true;
+                    done();
+                }).catch(err => {
+                    done(err);
+                });
+            });
+
         });
 
         describe('logout()', function() {

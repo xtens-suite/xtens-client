@@ -1,12 +1,17 @@
 import { expect } from 'chai';
 
-import { cloneDeep } from 'lodash';
+import { omit, cloneDeep } from 'lodash';
 
-import { REMOTE_REQUEST, SUBJECTS_SUCCESS, DATA_TYPES_SUCCESS, REMOTE_ERROR } from '@/store/mutation-types';
+import {
+    REMOTE_REQUEST, SUBJECTS_SUCCESS, DATA_TYPES_SUCCESS,
+    DATA_TYPE_SUCCESS, REMOTE_ERROR
+} from '@/store/mutation-types';
 
 import records from '@/store/records';
 import dataTypes from '../fixtures/dataTypes/dataTypeList';
 import subjects from '../fixtures/subjects/subjectList';
+
+import dataType from '../fixtures/dataTypes/dataType';
 
 import * as recordsApi from '@/api/records-api';
 
@@ -106,6 +111,64 @@ describe('records', function() {
                 records.actions.getDataTypes({commit, state}, malformedPayload)
                 .then(() => {
                     expect(commit.calledWith(REMOTE_ERROR)).to.be.true;
+                    done();
+                }).catch(err => {
+                    done(err);
+                });
+            });
+
+        });
+
+        describe('getDataTypeForEdit', function() {
+
+            let getDataTypesStub, getSuperTypeMetaStub;
+
+            beforeEach(function() {
+                commit = sinon.stub();
+                correctPayload = { id: 7 };
+                malformedPayload = { id: 'this is malformed' };
+                getRecordStub = sinon.stub(recordsApi, 'getDataType');
+                getRecordStub.throws();
+                getRecordStub.withArgs(correctPayload).returns({
+                    data: dataType
+                });
+                getRecordStub.withArgs(malformedPayload).throws();
+                getDataTypesStub = sinon.stub(recordsApi, 'getDataTypes').returns({
+                    data: dataTypes
+                });
+                console.log(`SuperType ID is: ${JSON.stringify(dataType.superType.id)}`);
+                getSuperTypeMetaStub = sinon.stub(recordsApi, 'getSuperTypeMeta').returns({
+                    data: {
+                        isMultiProject: false
+                    }
+                });
+                getSuperTypeMetaStub.withArgs(dataType.superType.id).returns({
+                    data: {
+                        isMultiProject: true
+                    }
+                });
+                state = cloneDeep(testState);
+            });
+
+            afterEach(function() {
+                getRecordStub.restore();
+                getDataTypesStub.restore();
+                getSuperTypeMetaStub.restore();
+            });
+
+            it('correctly commits a DATA_TYPE_SUCCESS event with the expected payload', function(done) {
+                records.actions.getDataTypeForEdit({commit, state}, { id: 7 })
+                .then(res => {
+                    console.log(`records.spec.js - getDataTypeForEdit: response = ${res}`);
+                    const meta = { isMultiProject: true };
+                    console.log(JSON.stringify(commit.lastCall.args));
+                    console.log(JSON.stringify(getSuperTypeMetaStub.lastCall));
+                    const args = [DATA_TYPES_SUCCESS, {
+                        dataType,
+                        dataTypes,
+                        meta
+                    }];
+                    expect(commit.calledWithExactly(...args)).to.be.true;
                     done();
                 }).catch(err => {
                     done(err);
@@ -221,6 +284,34 @@ describe('records', function() {
                 expect(testState.paginationInfo).to.have.nested.property('links.next', 'http://localhost:1337/subject?limit=30&skip=30');
                 expect(testState.paginationInfo).to.have.nested.property('links.last', 'http://localhost:1337/subject?limit=30&skip=1590');
 
+            });
+
+        });
+
+        describe('DATA_TYPE_SUCCESS', function() {
+
+            beforeEach(function() {
+                const meta = { isMultiProject: true };
+                records.mutations[DATA_TYPE_SUCCESS](testState, {
+                    dataType,
+                    dataTypes,
+                    meta
+                });
+            });
+
+            it('sets isPending to false', function() {
+
+                expect(testState.isPending).to.be.false;
+            });
+
+            it('sets isMultiProject to false within dataType.superType', function() {
+                expect(testState).to.have.nested.property('dataType.superType.isMultiProject', true);
+            });
+
+            it('sets dataType and dataTypes correctly', function() {
+                expect(testState).to.have.property('dataTypes', dataTypes);
+                expect(omit(testState.dataType, 'superType')).to.eql(omit(dataType, 'superType'));
+                expect(omit(testState.dataType.superType, 'isMultiProject')).to.eql(dataType.superType);
             });
 
         });

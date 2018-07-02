@@ -26,10 +26,10 @@ describe('ProjectSelector.vue', function() {
                 // store
             });
         });
-        /*
-        afterEach(function() {
-            dstub.restore();
-        }); */
+
+        // afterEach(function() {
+        //     dstub.restore();
+        // });
 
         it('does not contain the project selector if the checkbox is not ticked', function() {
             expect(wrapper.contains('#activeProjectSelect')).to.be.false;
@@ -107,5 +107,4 @@ describe('ProjectSelector.vue', function() {
         });
 
     });
-
 });
