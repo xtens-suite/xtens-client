@@ -39,6 +39,9 @@ module.exports = function(config) {
             '../../node_modules/babel-polyfill/dist/polyfill.js',
             './index.js'
         ],
+        exclude: [
+            './coverage/**/*.js'
+        ],
         preprocessors: {
             './index.js': ['webpack', 'sourcemap']
         },

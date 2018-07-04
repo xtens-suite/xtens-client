@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { mount } from 'vue-test-utils';
+import { mount } from '@vue/test-utils';
 
 import store from '@/store';
 import DataTypeList from '@/components/DataTypeList.vue';

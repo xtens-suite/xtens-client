@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { shallow, mount } from 'vue-test-utils';
+import { shallow, mount } from '@vue/test-utils';
 
 import bFormCheckbox from 'bootstrap-vue/es/components/form-checkbox/form-checkbox';
 import bFormSelect from 'bootstrap-vue/es/components/form-select/form-select';

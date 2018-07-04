@@ -7,11 +7,24 @@ import {
 import * as api from '@/api/records-api';
 import { parseLinkHeader } from '@/utils/funcs';
 
+export const defaultDataType = {
+    superType: {
+        schema: {
+            header: {
+                // fileUpload: false
+            },
+            body: []
+        }
+    }
+};
+
 const state = {
 
     isPending: false,
 
     dataTypes: [],
+
+    dataType: defaultDataType,
 
     subjects: [],
     samples: [],
@@ -33,7 +46,7 @@ const getters = {
     subjects: state => state.subjects,
 
     // single instances/records
-    dataType: state => find(state.dataTypes, {id: state.currentDataTypeId}),
+    dataType: state => state.dataType,
     paginationInfo: state => state.paginationInfo
 };
 
@@ -131,7 +144,7 @@ const mutations = {
     },
 
     [DATA_TYPE_SUCCESS](state, {
-        dataType = {},
+        dataType = defaultDataType,
         dataTypes = [],
         meta: {
             isMultiProject = false

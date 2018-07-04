@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { shallow } from 'vue-test-utils';
+import { shallow } from '@vue/test-utils';
 
 import store from '@/store';
 import router from '@/router';

@@ -35,7 +35,7 @@ export default new Router({
             props: true
         },
         {
-            path: 'data-type/:id',
+            path: '/data-type/:id',
             name: 'DataTypeEdit',
             component: DataTypeEdit,
             props: true

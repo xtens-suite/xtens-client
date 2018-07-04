@@ -7,7 +7,7 @@ import {
     DATA_TYPE_SUCCESS, REMOTE_ERROR
 } from '@/store/mutation-types';
 
-import records from '@/store/records';
+import records, { defaultDataType } from '@/store/records';
 import dataTypes from '../fixtures/dataTypes/dataTypeList';
 import subjects from '../fixtures/subjects/subjectList';
 
@@ -17,6 +17,9 @@ import * as recordsApi from '@/api/records-api';
 
 const testState = {
     isPending: false,
+
+    dataTypes: [],
+    dataType: defaultDataType,
 
     subjects: subjects,
     samples: [],
@@ -58,6 +61,12 @@ describe('records', function() {
         describe('paginationInfo', function() {
             it('gets the \'paginationInfo\' property of the state', function() {
                 expect(records.getters.paginationInfo(testState)).to.eql(testState.paginationInfo);
+            });
+        });
+
+        describe('dataType', function() {
+            it('gets the \'dataType\' property of the state', function() {
+                expect(records.getters.dataType(testState)).to.eql(defaultDataType);
             });
         });
 
