@@ -1,4 +1,4 @@
-import { find } from 'lodash';
+// import { find } from 'lodash';
 
 import {
     REMOTE_REQUEST, SUBJECTS_SUCCESS, REMOTE_ERROR, DATA_TYPES_SUCCESS,
@@ -82,29 +82,20 @@ const actions = {
 
     async getDataTypeForEdit({commit, state}, payload) {
         try {
-            console.log('records.getDataTypeForEdit - committing REMOTE_REQUEST');
             commit(REMOTE_REQUEST);
-            console.log('records.getDataTypeForEdit - committed REMOTE_REQUEST');
             const dataTypeRes = await api.getDataType({id: payload.id});
-            console.log(`records.getDataTypeForEdit - DataTypeRes is: ${JSON.stringify(dataTypeRes)}`);
             const dataType = dataTypeRes.data;
-            console.log(`records.getDataTypeForEdit - DataType is: ${JSON.stringify(dataType)}`);
-            console.log(`records.getDataTypeForEdit - SuperType ID is: ${JSON.stringify(dataType.superType.id)}`);
             const dataTypesRes = await api.getDataTypes();
             const metaRes = await api.getSuperTypeMeta(dataType.superType.id);
-            console.log(`records.getDataTypeForEdit - Data Types are:: ${JSON.stringify(dataTypesRes.data)}`);
-            console.log(`records.getDataTypeForEdit - Meta is: ${JSON.stringify(metaRes.data)}`);
             const commitParams = {
                 dataType,
                 dataTypes: dataTypesRes.data,
                 meta: metaRes.data
             };
-            console.log(`Meta is: ${JSON.stringify(commitParams.meta)}`);
             commit(DATA_TYPES_SUCCESS, commitParams);
             return 'success';
         } catch (err) {
             const { response } = err;
-            console.log(`records.getDataTypeForEdit - Error caught: ${response}`);
             commit(REMOTE_ERROR, response);
             return 'failure';
         }

@@ -1,12 +1,23 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { mount } from '@vue/test-utils';
+import { mount, createLocalVue } from '@vue/test-utils';
+
+import BootstrapVue from 'bootstrap-vue';
+import Vuex from 'vuex';
 
 import store from '@/store';
 import i18n from '@/i18n';
 import DataTypeEdit from '@/components/DataTypeEdit.vue';
 
 describe('DataTypeEdit.vue', function() {
+
+    let localVue;
+
+    beforeEach(function() {
+        localVue = createLocalVue();
+        localVue.use(Vuex);
+        localVue.use(BootstrapVue);
+    });
 
     describe('mounted()', function() {
         let stub;
@@ -20,12 +31,13 @@ describe('DataTypeEdit.vue', function() {
         });
 
         it('does not trigger the records/getDataTypeForEdit action when the component is mounted and no \'id\' prop is passed', function() {
-            mount(DataTypeEdit, { store, i18n });
+            mount(DataTypeEdit, { localVue, store, i18n });
             expect(stub.called).to.be.false;
         });
 
         it('triggers the records/getDataTypeForEdit action when the component is mounted and the \'id\' prop is passed', function() {
             mount(DataTypeEdit, {
+                // localVue,
                 store,
                 i18n,
                 propsData: {
@@ -37,11 +49,12 @@ describe('DataTypeEdit.vue', function() {
         });
 
         it('does show the data type name input tag', function() {
-            const wrapper = mount(DataTypeEdit, { store, i18n });
+            const wrapper = mount(DataTypeEdit, { localVue, store, i18n });
             const div = wrapper.find('#content');
             expect(div.is('div')).to.be.true;
             const input = wrapper.find('#name');
-            expect(input.vm.$props.placeholder).to.equal(i18n.messages.en.general.name);
+            console.log(input.html());
+            expect(input.vm.$props.placeholder).to.equal(i18n.messages.en.dataTypeEdit.dataTypeName);
         });
 
     });

@@ -1,6 +1,9 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { shallow } from '@vue/test-utils';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
+
+import BootstrapVue from 'bootstrap-vue';
+import Vuex from 'vuex';
 
 import store from '@/store';
 import router from '@/router';
@@ -14,9 +17,12 @@ const appNavbarProps = {
 
 describe('AppNavbar.vue', function() {
 
-    let dstub, pstub;
+    let localVue, dstub, pstub;
 
     beforeEach(function() {
+        localVue = createLocalVue();
+        localVue.use(Vuex);
+        localVue.use(BootstrapVue);
         dstub = sinon.stub(store, 'dispatch');
         pstub = sinon.stub(router, 'push');
     });
@@ -27,21 +33,27 @@ describe('AppNavbar.vue', function() {
     });
 
     it('renders the user name in the appropriate <em> tag', function() {
-        const wrapper = shallow(AppNavbar, {
+        const wrapper = shallowMount(AppNavbar, {
+            // localVue,
             propsData: appNavbarProps
         });
+        const htmlString = wrapper.html();
+        console.log(htmlString);
         expect(wrapper.find('#navbarUsername').text()).to.equal(appNavbarProps.login);
     });
 
     it('renders the user profile dropdown if client not authenticated', function() {
-        const wrapper = shallow(AppNavbar, {
+        const wrapper = shallowMount(AppNavbar, {
+            // localVue,
             propsData: appNavbarProps
         });
         expect(wrapper.find('#navbarUserProfileDropdown').exists()).to.be.true;
     });
 
     it('does not render the user profile dropdown if client not authenticated', function() {
-        const wrapper = shallow(AppNavbar);
+        const wrapper = shallowMount(AppNavbar, {
+            // localVue
+        });
         expect(wrapper.find('#navbarUserProfileDropdown').exists()).to.be.false;
     });
 
@@ -52,7 +64,8 @@ describe('AppNavbar.vue', function() {
             let wrapper;
 
             beforeEach(function() {
-                wrapper = shallow(AppNavbar, {
+                wrapper = shallowMount(AppNavbar, {
+                    // localVue,
                     propsData: appNavbarProps,
                     store,
                     router

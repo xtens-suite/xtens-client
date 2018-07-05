@@ -168,10 +168,7 @@ describe('records', function() {
             it('correctly commits a DATA_TYPE_SUCCESS event with the expected payload', function(done) {
                 records.actions.getDataTypeForEdit({commit, state}, { id: 7 })
                 .then(res => {
-                    console.log(`records.spec.js - getDataTypeForEdit: response = ${res}`);
                     const meta = { isMultiProject: true };
-                    console.log(JSON.stringify(commit.lastCall.args));
-                    console.log(JSON.stringify(getSuperTypeMetaStub.lastCall));
                     const args = [DATA_TYPES_SUCCESS, {
                         dataType,
                         dataTypes,
