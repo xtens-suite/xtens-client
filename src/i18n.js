@@ -9,11 +9,13 @@ const messages = {
         general: {
             name: 'Name'
         },
-        dataTypeEdit: {
+        dataType: {
             newDataType: 'New Data Type',
             editDataType: 'Edit Data Type',
             dataTypeName: 'Data Type Name',
-            hasFileUpload: 'Has File Upload?'
+            hasFileUpload: 'Has File Upload?',
+            model: 'Model',
+            parent: 'Parent'
         }
     },
 
@@ -21,7 +23,7 @@ const messages = {
         general: {
             name: 'Name'
         },
-        dataTypeEdit: {
+        dataType: {
             newDataType: 'Nuovo Tipo di Dato',
             editDataType: 'Modifica Tipo di Dato',
             dataTypeName: 'Nome del Tipo di Dato'

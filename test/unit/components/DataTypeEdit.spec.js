@@ -7,7 +7,9 @@ import Vuex from 'vuex';
 
 import store from '@/store';
 import i18n from '@/i18n';
+
 import DataTypeEdit from '@/components/DataTypeEdit.vue';
+import { DATA_TYPE_MODELS } from '@/utils/constants';
 
 describe('DataTypeEdit.vue', function() {
 
@@ -17,6 +19,19 @@ describe('DataTypeEdit.vue', function() {
         localVue = createLocalVue();
         localVue.use(Vuex);
         localVue.use(BootstrapVue);
+    });
+
+    describe('data()', function() {
+        it('sets the correct default data', function() {
+            expect(typeof DataTypeEdit.data).to.equal('function');
+            const defaultData = DataTypeEdit.data();
+            expect(defaultData.dataTypeModelOptions).to.be.an('array').of.length(DATA_TYPE_MODELS.length);
+            let index = 0;
+            for (const el of defaultData.dataTypeModelOptions) {
+                expect(el.value).to.equal(DATA_TYPE_MODELS[index]);
+                expect(el.text).to.equal(DATA_TYPE_MODELS[index++].toUpperCase());
+            }
+        });
     });
 
     describe('mounted()', function() {
@@ -54,7 +69,7 @@ describe('DataTypeEdit.vue', function() {
             expect(div.is('div')).to.be.true;
             const input = wrapper.find('#name');
             console.log(input.html());
-            expect(input.vm.$props.placeholder).to.equal(i18n.messages.en.dataTypeEdit.dataTypeName);
+            expect(input.vm.$props.placeholder).to.equal(i18n.messages.en.dataType.dataTypeName);
         });
 
     });

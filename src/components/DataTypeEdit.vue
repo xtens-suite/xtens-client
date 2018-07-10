@@ -1,23 +1,32 @@
 <template>
     <div id="main">
-        <h1 v-if="isNew">{{ $t('dataTypeEdit.newDataType') }}</h1>
-        <h1 v-else>{{ $t('dataTypeEdit.editDataType') }}</h1>
+        <h1 v-if="isNew">{{ $t('dataType.newDataType') }}</h1>
+        <h1 v-else>{{ $t('dataType.editDataType') }}</h1>
         <div id="content">
             <b-form @submit="onSubmit">
                 <b-container>
                     <b-row>
-                        <b-col>
+                        <b-col md="6" sm="9">
                             <b-form-group horizontal :label-cols="2" :label="$t('general.name')" label-for="name">
-                                <b-form-input id="name" :placeholder="$t('dataTypeEdit.dataTypeName')">{{ dataType.name }}</b-form-input>
+                                <b-form-input id="name" :placeholder="$t('dataType.dataTypeName')">{{ dataType.name }}</b-form-input>
                             </b-form-group>
                         </b-col>
-                        <b-col>
+                        <b-col sm="auto">
                             <b-form-checkbox id="fileUpload" v-model="dataType.superType.schema.header.fileUpload">
-                                {{ $t('dataTypeEdit.hasFileUpload') }}
+                                {{ $t('dataType.hasFileUpload') }}
                             </b-form-checkbox>
                         </b-col>
                         <b-col></b-col>
                         <b-col></b-col>
+                    </b-row>
+                    <b-row>
+                        <b-col md="6" sm="12">
+                            <b-form-select :label-cols="2" :label="$t('dataType.model')" v-model="dataType.model" :options="dataTypeModelOptions" ></b-form-select>
+                        </b-col>
+                        <b-col md="6" sm="12">
+                            <b-form-group horizontal :label-cols="2" :label="$t('dataType.parent')" label-for="parent">
+                            </b-form-group>
+                        </b-col>
                     </b-row>
                 </b-container>
             </b-form>
@@ -29,10 +38,20 @@
 // import bForm from 'bootstrap-vue/es/components/form/form';
 import { mapGetters } from 'vuex';
 
+import { DATA_TYPE_MODELS } from '@/utils/constants';
+
 export default {
 
     props: {
         id: Number
+    },
+
+    data() {
+        return {
+            dataTypeModelOptions: DATA_TYPE_MODELS.map(elem => {
+                return { value: elem, text: elem.toUpperCase() };
+            })
+        };
     },
 
     computed: {
