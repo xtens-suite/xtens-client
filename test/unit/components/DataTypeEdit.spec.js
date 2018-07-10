@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import sinon from 'sinon';
 import { mount, createLocalVue } from '@vue/test-utils';
 
+import vSelect from 'vue-select';
 import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
 
@@ -70,6 +71,14 @@ describe('DataTypeEdit.vue', function() {
             const input = wrapper.find('#name');
             console.log(input.html());
             expect(input.vm.$props.placeholder).to.equal(i18n.messages.en.dataType.dataTypeName);
+        });
+
+        it('does show the multiple selector for the parent dataTypes', function() {
+            const wrapper = mount(DataTypeEdit, { localVue, store, i18n });
+            console.log(wrapper.html());
+            const select = wrapper.find('#parents');
+            expect(select.is(vSelect)).to.be.true;
+            expect(select.props().options).to.eql([]);
         });
 
     });

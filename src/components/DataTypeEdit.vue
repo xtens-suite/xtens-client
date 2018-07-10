@@ -24,7 +24,8 @@
                             <b-form-select :label-cols="2" :label="$t('dataType.model')" v-model="dataType.model" :options="dataTypeModelOptions" ></b-form-select>
                         </b-col>
                         <b-col md="6" sm="12">
-                            <b-form-group horizontal :label-cols="2" :label="$t('dataType.parent')" label-for="parent">
+                            <b-form-group horizontal :label-cols="2" :label="$t('dataType.parent')" label-for="parents">
+                                <v-select id="parents" :v-model="dataType.parents" :options="dataTypes" label="name"></v-select>
                             </b-form-group>
                         </b-col>
                     </b-row>
@@ -36,9 +37,13 @@
 
 <script>
 // import bForm from 'bootstrap-vue/es/components/form/form';
+import Vue from 'vue';
+import vSelect from 'vue-select';
 import { mapGetters } from 'vuex';
 
 import { DATA_TYPE_MODELS } from '@/utils/constants';
+
+Vue.component('v-select', vSelect);
 
 export default {
 
