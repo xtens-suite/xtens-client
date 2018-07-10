@@ -1,5 +1,8 @@
 # xtens-client
 
+[![Build Status](https://travis-ci.com/xtens-suite/xtens-client.svg?branch=master)](https://travis-ci.com/xtens-suite/xtens-client.svg?branch=master)
+
+
 > A client interface for the XTENS data repository
 
 ## Build Setup
