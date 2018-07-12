@@ -92,7 +92,7 @@ const actions = {
                 dataTypes: dataTypesRes.data,
                 meta: metaRes.data
             };
-            commit(DATA_TYPES_SUCCESS, commitParams);
+            commit(DATA_TYPE_SUCCESS, commitParams);
             return 'success';
         } catch (err) {
             const { response } = err;
@@ -122,7 +122,7 @@ const mutations = {
     },
 
     [SUBJECTS_SUCCESS](state, {subjects = [], headers = {}}) {
-        console.log(headers);
+        // console.log(headers);
         state.isPending = false;
         state.subjects = subjects;
         state.paginationInfo = {

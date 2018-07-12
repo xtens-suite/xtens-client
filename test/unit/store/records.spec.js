@@ -169,7 +169,7 @@ describe('records', function() {
                 records.actions.getDataTypeForEdit({commit, state}, { id: 7 })
                 .then(res => {
                     const meta = { isMultiProject: true };
-                    const args = [DATA_TYPES_SUCCESS, {
+                    const args = [DATA_TYPE_SUCCESS, {
                         dataType,
                         dataTypes,
                         meta
