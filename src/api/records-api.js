@@ -41,7 +41,7 @@ export async function getDataTypes({
     skip = 0,
     sort = DEFAULT_SORTING_CRITERION
 } = {}) {
-    const response = await axios.get('api/dataType', {
+    const response = await axios.get('/api/dataType', {
         params: {
             project: activeProject ? activeProject.id : undefined,
             populate: ['parents', 'project'],
@@ -62,7 +62,7 @@ export async function getDataType({
     id,
     populate = ['parents', 'project', 'superType']
 }) {
-    const response = await axios.get(`api/dataType/${id}`, {
+    const response = await axios.get(`/api/dataType/${id}`, {
         params: {
             populate
         }
@@ -76,6 +76,6 @@ export async function getDataType({
  * @param{Integer} id - the id/primary key of the superType
  */
 export async function getSuperTypeMeta(id) {
-    const response = await axios.get(`api/superType/meta/${id}`);
+    const response = await axios.get(`/api/superType/meta/${id}`);
     return response;
 }
