@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { find } from 'lodash';
+import find from 'lodash/find';
 import { ALL_PROJECTS } from '@/utils/constants';
 
 const recordType2ActionMap = {

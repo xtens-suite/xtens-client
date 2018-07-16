@@ -22,11 +22,11 @@
 </template>
 <script>
 import { mapGetters } from 'vuex';
-import { find } from 'lodash';
+import find from 'lodash/find';
 
 import { ALL_PROJECTS } from '@/utils/constants';
 
-import Pagination from '@/components/subcomponents/Pagination';
+const Pagination = () => import('@/components/subcomponents/Pagination');
 
 export default {
 

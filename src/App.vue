@@ -9,7 +9,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import AppNavbar from '@/components/subcomponents/AppNavbar.vue';
+const AppNavbar = import('@/components/subcomponents/AppNavbar.vue');
 
 const USER_INFO = 'userInfo';
 

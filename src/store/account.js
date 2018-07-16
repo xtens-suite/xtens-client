@@ -1,4 +1,7 @@
-import { isEmpty, uniq, flatten, clone } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
+import uniq from 'lodash/uniq';
+import flatten from 'lodash/flatten';
+import clone from 'lodash/clone';
 import axios from 'axios';
 
 import { WHEEL, ADMIN, STANDARD, ALL_PROJECTS } from '@/utils/constants';

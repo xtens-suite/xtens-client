@@ -1,9 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import LoginForm from '@/components/LoginForm';
-import SubjectList from '@/components/SubjectList';
-import DataTypeList from '@/components/DataTypeList';
-import DataTypeEdit from '@/components/DataTypeEdit';
+
+const LoginForm = () => import('@/components/LoginForm');
+const SubjectList = () => import('@/components/SubjectList');
+const DataTypeList = () => import('@/components/DataTypeList');
+const DataTypeEdit = () => import('@/components/DataTypeEdit');
 
 Vue.use(Router);
 
