@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 import Vue from 'vue';
-import BootstrapVue from 'bootstrap-vue';
+// import BootstrapVue from 'bootstrap-vue';
 
 import App from './App';
 import router from './router';
@@ -13,7 +13,7 @@ import i18n from '@/i18n';
 
 Vue.config.productionTip = false;
 
-Vue.use(BootstrapVue);
+// Vue.use(BootstrapVue);
 
 /* eslint-disable no-new */
 new Vue({

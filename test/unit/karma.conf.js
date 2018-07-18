@@ -39,6 +39,10 @@ module.exports = function(config) {
             ChromeHeadlessNoSandbox: {
                 base: 'ChromeHeadless',
                 flags: ['--no-sandbox', '--disable-translate', '--disable-extensions', '--remote-debugging-port=9223']
+            },
+            ChromeDebugging: {
+                base: 'Chrome',
+                flags: ['--remote-debugging-port=9223']
             }
         },
         frameworks: ['mocha', 'sinon-chai'],

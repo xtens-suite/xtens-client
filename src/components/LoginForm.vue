@@ -33,7 +33,17 @@
 
 <script>
 // import axios from 'axios';
+import Vue from 'vue';
+import bForm from 'bootstrap-vue/es/components/form/form';
+import bFormGroup from 'bootstrap-vue/es/components/form-group/form-group';
+import bFormInput from 'bootstrap-vue/es/components/form-input/form-input';
+import bButton from 'bootstrap-vue/es/components/button/button';
 import { mapGetters } from 'vuex';
+
+Vue.component('b-form', bForm);
+Vue.component('b-form-group', bFormGroup);
+Vue.component('b-form-input', bFormInput);
+Vue.component('b-button', bButton);
 
 export default {
 

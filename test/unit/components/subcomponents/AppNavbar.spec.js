@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { mount, createLocalVue } from '@vue/test-utils';
 
 import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
@@ -33,17 +33,16 @@ describe('AppNavbar.vue', function() {
     });
 
     it('renders the user name in the appropriate <em> tag', function() {
-        const wrapper = shallowMount(AppNavbar, {
+        const wrapper = mount(AppNavbar, {
             // localVue,
             propsData: appNavbarProps
         });
-        const htmlString = wrapper.html();
-        console.log(htmlString);
+        // const htmlString = wrapper.html();
         expect(wrapper.find('#navbarUsername').text()).to.equal(appNavbarProps.login);
     });
 
     it('renders the user profile dropdown if client not authenticated', function() {
-        const wrapper = shallowMount(AppNavbar, {
+        const wrapper = mount(AppNavbar, {
             // localVue,
             propsData: appNavbarProps
         });
@@ -51,7 +50,7 @@ describe('AppNavbar.vue', function() {
     });
 
     it('does not render the user profile dropdown if client not authenticated', function() {
-        const wrapper = shallowMount(AppNavbar, {
+        const wrapper = mount(AppNavbar, {
             // localVue
         });
         expect(wrapper.find('#navbarUserProfileDropdown').exists()).to.be.false;
@@ -64,7 +63,7 @@ describe('AppNavbar.vue', function() {
             let wrapper;
 
             beforeEach(function() {
-                wrapper = shallowMount(AppNavbar, {
+                wrapper = mount(AppNavbar, {
                     // localVue,
                     propsData: appNavbarProps,
                     store,

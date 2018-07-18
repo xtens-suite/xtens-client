@@ -1,12 +1,8 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { shallow, mount } from '@vue/test-utils';
-
-import bFormCheckbox from 'bootstrap-vue/es/components/form-checkbox/form-checkbox';
-import bFormSelect from 'bootstrap-vue/es/components/form-select/form-select';
+import { shallowMount, mount } from '@vue/test-utils';
 
 import store from '@/store';
-import router from '@/router';
 import ProjectSelector from '@/components/subcomponents/ProjectSelector';
 
 import projects from '../../fixtures/projects/projectList';
@@ -19,7 +15,7 @@ describe('ProjectSelector.vue', function() {
 
         beforeEach(function() {
             // dstub = sinon.stub(store, 'dispatch');
-            wrapper = shallow(ProjectSelector, {
+            wrapper = mount(ProjectSelector, {
                 propsData: {
                     projects
                 }// ,
@@ -35,8 +31,13 @@ describe('ProjectSelector.vue', function() {
             expect(wrapper.contains('#activeProjectSelect')).to.be.false;
         });
 
-        it('contains the project selector if the checkbox is ticked', function() {
+        it.only('contains the project selector if the checkbox is ticked', function() {
+            console.log(wrapper.html());
             wrapper.setData({ changeEnabled: true });
+            wrapper.vm.$forceUpdate(); // it does not seem to update automatically
+            // const checkboxRef = wrapper.find({ ref: 'changeEnabledCheckbox' });
+            // checkboxRef.trigger('click');
+            console.log(wrapper.html());
             expect(wrapper.contains('#activeProjectSelect')).to.be.true;
         });
     });
@@ -50,7 +51,7 @@ describe('ProjectSelector.vue', function() {
             beforeEach(function() {
                 dstub = sinon.stub(store, 'dispatch');
 
-                wrapper = shallow(ProjectSelector, {
+                wrapper = shallowMount(ProjectSelector, {
                     propsData: {
                         projects
                     },
@@ -94,7 +95,7 @@ describe('ProjectSelector.vue', function() {
         describe('openModal()', function() {
 
             it('opens the modal', function() {
-                const wrapper = shallow(ProjectSelector, {
+                const wrapper = shallowMount(ProjectSelector, {
                     propsData: {
                         projects
                     }

@@ -41,9 +41,26 @@ import Vue from 'vue';
 import vSelect from 'vue-select';
 import { mapGetters } from 'vuex';
 
+import bForm from 'bootstrap-vue/es/components/form/form';
+import bFormGroup from 'bootstrap-vue/es/components/form-group/form-group';
+import bFormSelect from 'bootstrap-vue/es/components/form-select/form-select';
+import bContainer from 'bootstrap-vue/es/components/layout/container';
+import bRow from 'bootstrap-vue/es/components/layout/row';
+import bCol from 'bootstrap-vue/es/components/layout/col';
+import bFormInput from 'bootstrap-vue/es/components/form-input/form-input';
+import bFormCheckbox from 'bootstrap-vue/es/components/form-checkbox/form-checkbox';
+
 import { DATA_TYPE_MODELS } from '@/utils/constants';
 
 Vue.component('v-select', vSelect);
+Vue.component('b-form', bForm);
+Vue.component('b-form-group', bFormGroup);
+Vue.component('b-form-select', bFormSelect);
+Vue.component('b-container', bContainer);
+Vue.component('b-row', bRow);
+Vue.component('b-col', bCol);
+Vue.component('b-form-input', bFormInput);
+Vue.component('b-form-checkbox', bFormCheckbox);
 
 export default {
 

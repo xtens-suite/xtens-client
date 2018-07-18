@@ -18,11 +18,14 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import { mapGetters } from 'vuex';
+import bTable from 'bootstrap-vue/es/components/table/table';
 
 import { ALL_PROJECTS } from '@/utils/constants';
-
 import Pagination from '@/components/subcomponents/Pagination';
+
+Vue.component('b-table', bTable);
 
 export default {
 

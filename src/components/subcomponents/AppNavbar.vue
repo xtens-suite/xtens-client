@@ -30,7 +30,26 @@
     </b-navbar>
 </template>
 <script>
+import Vue from 'vue';
+import bNavbar from 'bootstrap-vue/es/components/navbar/navbar';
+import bNavbarNav from 'bootstrap-vue/es/components/navbar/navbar-nav';
+import bNavbarBrand from 'bootstrap-vue/es/components/navbar/navbar-brand';
+import bNavbarToggle from 'bootstrap-vue/es/components/navbar/navbar-toggle';
+import bNavItemDropdown from 'bootstrap-vue/es/components/nav/nav-item-dropdown';
+import bDropDownItem from 'bootstrap-vue/es/components/dropdown/dropdown-item';
+import bCollapse from 'bootstrap-vue/es/components/collapse/collapse';
+import bButton from 'bootstrap-vue/es/components/button/button';
+
 import ProjectSelector from '@/components/subcomponents/ProjectSelector';
+
+Vue.component('b-navbar', bNavbar);
+Vue.component('b-navbar-nav', bNavbarNav);
+Vue.component('b-navbar-brand', bNavbarBrand);
+Vue.component('b-navbar-toggle', bNavbarToggle);
+Vue.component('b-nav-item-dropdown', bNavItemDropdown);
+Vue.component('b-dropdown-item', bDropDownItem);
+Vue.component('b-collapse', bCollapse);
+Vue.component('b-button', bButton);
 
 export default {
 

@@ -21,12 +21,16 @@
     </div>
 </template>
 <script>
-import { mapGetters } from 'vuex';
 import find from 'lodash/find';
 
-import { ALL_PROJECTS } from '@/utils/constants';
+import Vue from 'vue';
+import bTable from 'bootstrap-vue/es/components/table/table';
+import { mapGetters } from 'vuex';
 
+import { ALL_PROJECTS } from '@/utils/constants';
 const Pagination = () => import('@/components/subcomponents/Pagination');
+
+Vue.component('b-table', bTable);
 
 export default {
 
